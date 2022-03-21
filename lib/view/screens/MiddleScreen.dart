@@ -26,13 +26,20 @@ final List<String> imagesList = [
   'assets/images/slide1.png',
   'assets/images/vector.png',
 ];
-Widget appBarTitle = new Text("Shopping",style: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,));
-Icon actionIcon = new Icon(Icons.search,color: AppTheme.appbar_title,);
+Widget appBarTitle = new Text("Shopping",
+    style: TextStyle(
+      fontWeight: FontWeight.w800,
+      color: AppTheme.appbar_title,
+      fontSize: 19.2,
+    ));
+Icon actionIcon = new Icon(
+  Icons.search,
+  color: AppTheme.appbar_title,
+);
 
 class MiddleScreen extends StatefulWidget {
   @override
   _MiddleScreenState createState() => _MiddleScreenState();
-
 }
 
 class _MiddleScreenState extends State<MiddleScreen> {
@@ -41,11 +48,12 @@ class _MiddleScreenState extends State<MiddleScreen> {
     // TODO: implement initState
     super.initState();
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
   }
+
   Widget getMediaWidget(BuildContext context, ApiResponse apiResponse) {
     List<BookingModel>? mediaList = apiResponse.data as List<BookingModel>?;
     switch (apiResponse.status) {
@@ -101,10 +109,10 @@ class _MiddleScreenState extends State<MiddleScreen> {
           elevation: 0,
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios, color: AppTheme.appbar_title),
-            onPressed: () => Navigator.of(context, rootNavigator: true)
-                .pushReplacement(
-              MaterialPageRoute(
-                  builder: (context) => MainActivity()),),
+            onPressed: () =>
+                Navigator.of(context, rootNavigator: true).pushReplacement(
+              MaterialPageRoute(builder: (context) => MainActivity()),
+            ),
           ),
           centerTitle: true,
           title: appBarTitle,
@@ -116,16 +124,32 @@ class _MiddleScreenState extends State<MiddleScreen> {
                   if (actionIcon.icon == Icons.search) {
                     actionIcon = new Icon(Icons.close);
                     appBarTitle = new TextField(
-                      style: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,),
-                      decoration: new InputDecoration(
-                          prefixIcon:
-                          new Icon(Icons.search, color: AppTheme.appbar_title),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: AppTheme.appbar_title,
+                          fontSize: 19.2,
+                        ),
+                        decoration: new InputDecoration(
+                          prefixIcon: new Icon(Icons.search,
+                              color: AppTheme.appbar_title),
                           hintText: "Search...",
-                          hintStyle: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,),
-                      ));
+                          hintStyle: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: AppTheme.appbar_title,
+                            fontSize: 19.2,
+                          ),
+                        ));
                   } else {
-                    actionIcon = new Icon(Icons.search,color: AppTheme.appbar_title,);
-                    appBarTitle = new Text("Shopping",style: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,));
+                    actionIcon = new Icon(
+                      Icons.search,
+                      color: AppTheme.appbar_title,
+                    );
+                    appBarTitle = new Text("Shopping",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: AppTheme.appbar_title,
+                          fontSize: 19.2,
+                        ));
                   }
                 });
               },
@@ -152,14 +176,11 @@ class _MiddleScreenState extends State<MiddleScreen> {
                     topRight: const Radius.circular(40.0),
                   ),
                 ),
-
               ),
             ),
           ],
         ),
       ),
     );
-
   }
 }
-

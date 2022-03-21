@@ -18,34 +18,26 @@ void main() {
 class BoriApp extends StatelessWidget {
   const BoriApp({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-         ChangeNotifierProvider.value(value: BookingViewModel()),
+        ChangeNotifierProvider.value(value: BookingViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'BORI',
-
         theme: ThemeData(
           appBarTheme: AppBarTheme(centerTitle: true),
           primarySwatch: AppTheme.AppBarTheme,
-            fontFamily: 'SF_Pro',
-            textTheme: TextTheme(
-                headline6: TextStyle(fontSize: 18.0)
-            ),
-
-
+          fontFamily: 'SF_Pro',
+          textTheme: TextTheme(headline6: TextStyle(fontSize: 19.2)),
         ),
-
         initialRoute: '/',
         routes: {
-           '/': (context) => SplashScreen(),
+          '/': (context) => SplashScreen(),
         },
       ),
     );
   }
 }
-
