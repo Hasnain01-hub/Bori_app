@@ -42,11 +42,9 @@ dependencies:
   url_launcher: ^6.0.20
   youtube_api: ^1.0.4
   provider: ^6.0.1
-  
-  
   flutter_svg: ^0.22.0
-  
   sleek_circular_slider: ^2.0.1
+  google_maps_flutter: ^2.1.2
   
 
 dev_dependencies:
@@ -90,8 +88,8 @@ flutter:
   fonts:
     - family: SP_Pro
       fonts:
-        - asset: assets/fonts/SFPRODISPLAYLIGHTITALIC.OTF
-        - asset: fonts/Schyler-Italic.ttf
+      #  - asset: assets/fonts/SFPRODISPLAYLIGHTITALIC.OTF
+     #   - asset: fonts/Schyler-Italic.ttf
           # style: italic
     # - family: Trajan Pro
   #     fonts:

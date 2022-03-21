@@ -1,10 +1,8 @@
+// ignore_for_file: file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_new, avoid_unnecessary_containers, unused_local_variable, use_key_in_widget_constructors
+
 import 'package:bori_app/model/BookingModel.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
-import 'package:bori_app/view/screens/AdmissionScreen.dart';
-import 'package:bori_app/view/screens/BookingListScreen.dart';
-import 'package:bori_app/view/screens/LibraryScreen.dart';
-import 'package:bori_app/view/screens/MahabharataProjectScreen.dart';
 import 'package:bori_app/view/screens/MainActivityAdmission.dart';
 import 'package:bori_app/view/screens/MainActivityBookingList.dart';
 import 'package:bori_app/view/screens/MainActivityLibrary.dart';
@@ -15,7 +13,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 int _currentIndex = 0;
@@ -25,8 +22,6 @@ final List<String> imagesList = [
 ];
 
 class HomeScreen extends StatefulWidget {
-
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
