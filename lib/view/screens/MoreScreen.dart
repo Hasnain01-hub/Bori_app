@@ -28,8 +28,16 @@ final List<String> imagesList = [
   'assets/images/slide1.png',
   'assets/images/vector.png',
 ];
-Widget appBarTitle = new Text("More",style: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,));
-Icon actionIcon = new Icon(Icons.search,color: AppTheme.appbar_title,);
+Widget appBarTitle = new Text("More",
+    style: TextStyle(
+      fontWeight: FontWeight.w800,
+      color: AppTheme.appbar_title,
+      fontSize: 19.2,
+    ));
+Icon actionIcon = new Icon(
+  Icons.search,
+  color: AppTheme.appbar_title,
+);
 
 class MoreScreen extends StatefulWidget {
   @override
@@ -102,12 +110,12 @@ class _MoreScreenState extends State<MoreScreen> {
           elevation: 0,
           backgroundColor: AppTheme.AppBarTheme,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: AppTheme.appbar_title),
-            onPressed: () => Navigator.of(context, rootNavigator: true)
-                .pushReplacement(
-              MaterialPageRoute(
-                  builder: (context) => MainActivity()),)//SystemNavigator.pop(),
-          ),
+              icon: Icon(Icons.arrow_back_ios, color: AppTheme.appbar_title),
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pushReplacement(
+                    MaterialPageRoute(builder: (context) => MainActivity()),
+                  ) //SystemNavigator.pop(),
+              ),
           centerTitle: true,
           title: appBarTitle,
           actions: <Widget>[
@@ -118,16 +126,32 @@ class _MoreScreenState extends State<MoreScreen> {
                   if (actionIcon.icon == Icons.search) {
                     actionIcon = new Icon(Icons.close);
                     appBarTitle = new TextField(
-                      style: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,),
-                      decoration: new InputDecoration(
-                          prefixIcon:
-                              new Icon(Icons.search, color: AppTheme.appbar_title),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: AppTheme.appbar_title,
+                          fontSize: 19.2,
+                        ),
+                        decoration: new InputDecoration(
+                          prefixIcon: new Icon(Icons.search,
+                              color: AppTheme.appbar_title),
                           hintText: "Search...",
-                          hintStyle: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,),
-                      ) );
+                          hintStyle: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: AppTheme.appbar_title,
+                            fontSize: 19.2,
+                          ),
+                        ));
                   } else {
-                    actionIcon = new Icon(Icons.search,color: AppTheme.appbar_title,);
-                    appBarTitle = new Text("More",style: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,));
+                    actionIcon = new Icon(
+                      Icons.search,
+                      color: AppTheme.appbar_title,
+                    );
+                    appBarTitle = new Text("More",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: AppTheme.appbar_title,
+                          fontSize: 19.2,
+                        ));
                   }
                 });
               },
@@ -420,17 +444,17 @@ class _MoreScreenState extends State<MoreScreen> {
                         side: BorderSide(width: 5.0, color: Colors.transparent),
                       ),
                       onPressed: () => setState(() {
-                                            pressed_About = false;
-                                            pressed_elebrum = false;
-                                            pressed_contact = !pressed_contact;
-                                            pressed_blog = false;
-                                            pressed_discuss = false;
-                                            pressed_video = false;
+                        pressed_About = false;
+                        pressed_elebrum = false;
+                        pressed_contact = !pressed_contact;
+                        pressed_blog = false;
+                        pressed_discuss = false;
+                        pressed_video = false;
                         Navigator.of(context, rootNavigator: false)
                             .push(
-                        MaterialPageRoute(
-                        builder: (context) => MainActivityContact()),
-                        )
+                              MaterialPageRoute(
+                                  builder: (context) => MainActivityContact()),
+                            )
                             .then((value) => _refreshFirstPage());
                       }),
                       child: Stack(

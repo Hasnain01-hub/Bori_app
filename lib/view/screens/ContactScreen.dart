@@ -25,7 +25,7 @@ Widget appBarTitle = new Text("Contact",
     style: TextStyle(
       fontWeight: FontWeight.w800,
       color: AppTheme.appbar_title,
-      fontSize: 17,
+      fontSize: 19.2,
     ));
 Icon actionIcon = new Icon(
   Icons.search,
@@ -127,7 +127,7 @@ class _ContactScreenState extends State<ContactScreen> {
                           hintStyle: TextStyle(
                             fontWeight: FontWeight.w800,
                             color: AppTheme.appbar_title,
-                            fontSize: 17,
+                            fontSize: 19.2,
                           )),
                     );
                   } else {
@@ -139,7 +139,7 @@ class _ContactScreenState extends State<ContactScreen> {
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
                           color: AppTheme.appbar_title,
-                          fontSize: 17,
+                          fontSize: 19.2,
                         ));
                   }
                 });
@@ -171,10 +171,13 @@ class _ContactScreenState extends State<ContactScreen> {
                     ),
                   ),
                   child: SingleChildScrollView(
-                    child: new Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    
+                    children: [
                         Container(
                           margin: EdgeInsets.only(top: 30),
                           //   alignment: AlignmentDirectional.topCenter,
@@ -186,7 +189,7 @@ class _ContactScreenState extends State<ContactScreen> {
                             label: Text(
                               'Bhandarkar Oriental Research Institute ',
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 17),
+                                  fontWeight: FontWeight.w600, fontSize: 19.2),
                               textAlign: TextAlign.start,
                             ),
                           ),
@@ -196,7 +199,7 @@ class _ContactScreenState extends State<ContactScreen> {
                           child: Text(
                               "Address : 812, Shivajinagar, \nLaw College Road, Pune- 411004",
                               style: TextStyle(
-                                  fontSize: 14, color: AppTheme.AppBarTheme),
+                                  fontSize: 14,height: 1.8, color: AppTheme.AppBarTheme),
                               textAlign: TextAlign.start),
                         ),
                         TextButton.icon(
@@ -278,6 +281,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   ),
                 ),
               ),
+            ),
             ),
           ],
         ),

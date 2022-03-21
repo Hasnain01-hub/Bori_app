@@ -19,7 +19,6 @@ bool pressed_About = false;
 bool pressed_elebrum = false;
 bool pressed_contact = false;
 
-
 List<String> images = [
   "assets/images/booking.png",
   "assets/images/booking.png",
@@ -32,18 +31,21 @@ List<String> title = [
   "Amphithiter",
   "Studio",
 ];
-Widget appBarTitle = new Text("Booking",style: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,));
-Icon actionIcon = new Icon(Icons.search,color:AppTheme.appbar_title);
+Widget appBarTitle = new Text("Booking",
+    style: TextStyle(
+      fontWeight: FontWeight.w800,
+      color: AppTheme.appbar_title,
+      fontSize: 19.2,
+    ));
+Icon actionIcon = new Icon(Icons.search, color: AppTheme.appbar_title);
 
 class BookingListScreen extends StatefulWidget {
-
-
   @override
   _BookingListScreenState createState() => _BookingListScreenState();
 }
 
 class _BookingListScreenState extends State<BookingListScreen> {
-  String title_str="";
+  String title_str = "";
   Widget getMediaWidget(BuildContext context, ApiResponse apiResponse) {
     List<BookingModel>? mediaList = apiResponse.data as List<BookingModel>?;
     switch (apiResponse.status) {
@@ -88,14 +90,13 @@ class _BookingListScreenState extends State<BookingListScreen> {
   @override
   Widget build(BuildContext context) {
     final _inputController = TextEditingController();
-    ApiResponse apiResponse = Provider
-        .of<BookingViewModel>(context)
-        .response;
+    ApiResponse apiResponse = Provider.of<BookingViewModel>(context).response;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
         statusBarColor: Color.fromRGBO(100, 41, 8, 50),
         //or set color with: Color(0xFF0000FF)
-        statusBarIconBrightness: Brightness.dark)); return Scaffold(
-      resizeToAvoidBottomInset: false,   //new line
+        statusBarIconBrightness: Brightness.dark));
+    return Scaffold(
+      resizeToAvoidBottomInset: false, //new line
 
       appBar: new AppBar(
           backgroundColor: AppTheme.AppBarTheme,
@@ -105,41 +106,56 @@ class _BookingListScreenState extends State<BookingListScreen> {
             onPressed: () => Navigator.of(context).pop(),
           ),
           centerTitle: true,
-          title:appBarTitle,
+          title: appBarTitle,
           actions: <Widget>[
-            new IconButton(icon: actionIcon,onPressed:(){
-              setState(() {
-                if (actionIcon.icon == Icons.search){
-                  actionIcon = new Icon(Icons.close);
-                  appBarTitle = new TextField(
-                      style: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,),
-                    decoration: new InputDecoration(
-                        prefixIcon: new Icon(Icons.search,color:AppTheme.appbar_title),
-                        hintText: "Search...",
-                        hintStyle: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,)
-                    ),
-                  );}
-                else {
-                  actionIcon = new Icon(Icons.search,color: AppTheme.appbar_title,);
-                  appBarTitle = new Text("Booking",style: TextStyle(fontWeight: FontWeight.w800,color: AppTheme.appbar_title,fontSize: 17,));
-                }
-
-
-              });
-            } ,),]
-      ),
+            new IconButton(
+              icon: actionIcon,
+              onPressed: () {
+                setState(() {
+                  if (actionIcon.icon == Icons.search) {
+                    actionIcon = new Icon(Icons.close);
+                    appBarTitle = new TextField(
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        color: AppTheme.appbar_title,
+                        fontSize: 19.2,
+                      ),
+                      decoration: new InputDecoration(
+                          prefixIcon: new Icon(Icons.search,
+                              color: AppTheme.appbar_title),
+                          hintText: "Search...",
+                          hintStyle: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: AppTheme.appbar_title,
+                            fontSize: 19.2,
+                          )),
+                    );
+                  } else {
+                    actionIcon = new Icon(
+                      Icons.search,
+                      color: AppTheme.appbar_title,
+                    );
+                    appBarTitle = new Text("Booking",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: AppTheme.appbar_title,
+                          fontSize: 19.2,
+                        ));
+                  }
+                });
+              },
+            ),
+          ]),
 
       body: Container(
-        child: new Column(
-
-          children:[
-            Flexible(
-              child:Container(
-                // color: AppTheme.more_bg,
-                decoration: BoxDecoration(
-                  color:AppTheme.deco, //color: C
-                ),
-                child: Container(
+        child: new Column(children: [
+          Flexible(
+            child: Container(
+              // color: AppTheme.more_bg,
+              decoration: BoxDecoration(
+                color: AppTheme.deco, //color: C
+              ),
+              child: Container(
 
                   //   padding: const EdgeInsets.only(bottom: 10),
                   padding: const EdgeInsets.all(20),
@@ -151,111 +167,141 @@ class _BookingListScreenState extends State<BookingListScreen> {
                     borderRadius: new BorderRadius.only(
                       topLeft: const Radius.circular(40.0),
                       topRight: const Radius.circular(40.0),
-                    ),),
-
-                    child: ListView.builder(
-                    itemBuilder: (BuildContext, index){
-                        return
-                          Container(
-                            margin: EdgeInsets.only(bottom: 20),
-                            child:Column(
-                              children: <Widget>[
-                                Column(
-                                    children: [
-                           Stack(
+                    ),
+                  ),
+                  child: ListView.builder(
+                    itemBuilder: (BuildContext, index) {
+                      return Container(
+                        margin: EdgeInsets.only(bottom: 20),
+                        child: Column(children: <Widget>[
+                          Column(children: [
+                            Stack(
                               //alignment:new Alignment(x, y)
-                             alignment: Alignment.topCenter,
+                              alignment: Alignment.topCenter,
                               children: <Widget>[
                                 Stack(
-                                  //alignment:new Alignment(x, y)
+                                    //alignment:new Alignment(x, y)
                                     alignment: Alignment.center,
-
                                     children: <Widget>[
                                       Stack(
                                           alignment: Alignment.center,
                                           children: <Widget>[
-                                      Container(
-                                        height: 287,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image:AssetImage("assets/images/card_brown.png"),
+                                            Container(
+                                              height: 287,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      "assets/images/card_brown.png"),
+                                                ),
+                                              ),
+                                              //  height: 287,width: 393,
                                             ),
-                                        ),
-                                      //  height: 287,width: 393,
-                                      ),
-
-                                          Container(
-
-                                            padding: EdgeInsets.only(bottom: 40),
-                                              height: 287,width: 393,
-                                          child:Align(
-                                              alignment: Alignment.bottomCenter,
-                                                                     child: Text(title[index],style: TextStyle(color: AppTheme.search_bg,fontSize: 30,fontWeight: FontWeight.w800),textAlign:TextAlign.center,))
-                                          )] )]),
+                                            Container(
+                                                padding:
+                                                    EdgeInsets.only(bottom: 40),
+                                                height: 287,
+                                                width: 393,
+                                                child: Align(
+                                                    alignment:
+                                                        Alignment.bottomCenter,
+                                                    child: Text(
+                                                      title[index],
+                                                      style: TextStyle(
+                                                          color: AppTheme
+                                                              .search_bg,
+                                                          fontSize: 30,
+                                                          fontWeight:
+                                                              FontWeight.w800),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )))
+                                          ])
+                                    ]),
                                 Container(
                                     child: InkWell(
-                                      onTap: () {
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (context) => BookingDetailsScreen()));
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                BookingDetailsScreen()));
+                                  },
+                                  child: Stack(
+                                      //alignment:new Alignment(x, y)
+                                      alignment: Alignment.topCenter,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 12, left: 12, right: 12),
 
-                                      },
-                                child:Stack(
-                                  //alignment:new Alignment(x, y)
-                                    alignment: Alignment.topCenter,
-                                    children: <Widget>[
-
-                                   Padding(
-                                          padding: const EdgeInsets.only(top: 12,left: 12,right: 12),
-
-                                         child:Container(
-
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-
-                                            image:AssetImage("assets/images/card_rect.png"),
-                                            )
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                              image: AssetImage(
+                                                  "assets/images/card_rect.png"),
+                                            )),
+                                            height: 218,
                                           ),
-                                        height: 218,
-                                        ),
-                                      //  )
+                                          //  )
                                           //   ),
-                                        //  ),
-                                       )]),
-                                    ))
+                                          //  ),
+                                        )
+                                      ]),
+                                ))
                               ],
-                                    ),
+                            ),
 
-                          Text("Seating Capacity - ",style: TextStyle(color: AppTheme.AppBarTheme,fontSize: 14,fontWeight: FontWeight.w800),),
-                          Text("Features - ",style: TextStyle(color: AppTheme.AppBarTheme,fontSize: 14,fontWeight: FontWeight.w800),),
-                          Text("Availability - ",style: TextStyle(color: AppTheme.AppBarTheme,fontSize: 14,fontWeight: FontWeight.w800),),
-                          Text("Rent - ",style: TextStyle(color: AppTheme.AppBarTheme,fontSize: 14,fontWeight: FontWeight.w900),),
-                                      Container(
-                                        margin: EdgeInsets.only(top:20),
-                                        child:SvgPicture.asset("assets/images/book_btn.svg",width: 157,height: 40,),alignment: Alignment.center,),
+                            Text(
+                              "Seating Capacity - ",
+                              style: TextStyle(
+                                  color: AppTheme.AppBarTheme,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800),
+                            ),
+                            Text(
+                              "Features - ",
+                              style: TextStyle(
+                                  color: AppTheme.AppBarTheme,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800),
+                            ),
+                            Text(
+                              "Availability - ",
+                              style: TextStyle(
+                                  color: AppTheme.AppBarTheme,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800),
+                            ),
+                            Text(
+                              "Rent - ",
+                              style: TextStyle(
+                                  color: AppTheme.AppBarTheme,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 20),
+                              child: SvgPicture.asset(
+                                "assets/images/book_btn.svg",
+                                width: 122,
+                                height: 35,
+                              ),
+                              alignment: Alignment.center,
+                            ),
 
-                           // leading: CircleAvatar(backgroundImage: AssetImage(images[index]),),
-                      
-
+                            // leading: CircleAvatar(backgroundImage: AssetImage(images[index]),),
                           ]),
-
-
-                      ]),
-                        );
-                      },
-                      itemCount: images.length,
-                      shrinkWrap: true,
-                      padding: EdgeInsets.all(5),
-                      scrollDirection: Axis.vertical,
-                    )
-                    ),
-                  ),
-                ),
-             ] ),
+                        ]),
+                      );
+                    },
+                    itemCount: images.length,
+                    shrinkWrap: true,
+                    padding: EdgeInsets.all(5),
+                    scrollDirection: Axis.vertical,
+                  )),
             ),
-
-        );
-
-
-
+          ),
+        ]),
+      ),
+    );
   }
 }
