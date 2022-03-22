@@ -1,7 +1,7 @@
-import 'package:bori_app/model/BookingModel.dart';
+// ignore_for_file: file_names, unnecessary_new, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, unused_local_variable, use_key_in_widget_constructors, avoid_print, non_constant_identifier_names
+
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
-import 'package:bori_app/view/screens/MoreScreen.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_api/youtube_api.dart';
-import 'AboutScreen.dart';
 
 class VideoListScreen extends StatefulWidget {
   @override
@@ -36,7 +35,6 @@ class _VideoListScreenState extends State<VideoListScreen> {
   bool isLoaded = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     callApi(); //calling async api function to get the  data from API
   }

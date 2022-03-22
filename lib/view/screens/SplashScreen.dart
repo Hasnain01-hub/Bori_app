@@ -1,6 +1,7 @@
+// ignore_for_file: file_names, prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace
+
 import 'package:bori_app/view/screens/MainActivity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -10,12 +11,30 @@ class SplashScreen extends StatefulWidget {
 class _SplashState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
+    Future.delayed(
+      Duration(seconds: 3),
+      () {
+        Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-             builder: (context) => MainActivity()));
-    });
+          PageRouteBuilder(
+            transitionDuration: Duration(seconds: 3),
+            transitionsBuilder: (context, animation, animationTime, child) {
+              animation = CurvedAnimation(
+                parent: animation,
+                curve: Curves.slowMiddle,
+              );
+              return ScaleTransition(
+                scale: animation,
+                child: child,
+              );
+            },
+            pageBuilder: (context, animation, animationTime) {
+              return MainActivity();
+            },
+          ),
+        );
+      },
+    );
 
     super.initState();
   }

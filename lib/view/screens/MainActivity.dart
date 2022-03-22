@@ -5,7 +5,6 @@ import 'package:bori_app/view/screens/HomeScreen.dart';
 import 'package:bori_app/view/screens/MoreScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'MiddleScreen.dart';
 
 class MainActivity extends StatefulWidget {

@@ -15,6 +15,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
+import 'AboutScreen.dart';
+
 int _currentIndex = 0;
 final List<String> imagesList = [
   'assets/images/slide1.png',
@@ -153,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.only(top: 20.0),
-    
+
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(25.0),
@@ -176,9 +178,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fontWeight: FontWeight.normal,
                                       fontSize: 14,
                                     ),
-    
+
                                     // floatingLabelAlignment: FloatingLabelAlignment.center,
-    
+
                                     alignLabelWithHint: true,
                                     suffixIcon: Icon(
                                       Icons.mic_none,
@@ -200,7 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height:
                                             MediaQuery.of(context).size.height /
                                                 5,
-    
+
                                         //scrollDirection: Axis.vertical,
                                         onPageChanged: (index, reason) {
                                           setState(
@@ -237,11 +239,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                   child: Stack(
                                                     children: <Widget>[
-                                                      Image.asset(
-                                                        item,
-                                                        fit: BoxFit.fill,
-                                                        width: double.infinity,
-                                                        height: double.infinity,
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          Navigator.of(context,
+                                                                  rootNavigator:
+                                                                      true)
+                                                              .push(
+                                                            MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  AboutScreen(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Image.asset(
+                                                          item,
+                                                          fit: BoxFit.fill,
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                        ),
                                                       ),
                                                       // Center(
                                                       // child: Text(
@@ -284,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         );
                                       }).toList(),
                                     ),
-    
+
                                     Container(
                                       color: AppTheme.more_bg,
                                       width: double.infinity,
@@ -311,12 +328,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: AppTheme.more_bg,
                                         child: InkWell(
                                           onTap: () {
-                                            
                                             Navigator.of(context,
                                                     rootNavigator: true)
-                                                .push(MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        MainActivityMahabharata()));
+                                                .push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MainActivityMahabharata(),
+                                              ),
+                                            );
                                           },
                                           child: ClipRRect(
                                             borderRadius:
@@ -374,19 +393,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         // height:50.0,semanticsLabel: "booking",
                                                       ),
                                                     ),
-    
+
                                                     Padding(
-                                                      padding: const EdgeInsets.only(left:8,top:6),
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 8, top: 6),
                                                       child: Text(
                                                         'Admission',
-                                                        textAlign: TextAlign.center,
+                                                        textAlign:
+                                                            TextAlign.center,
                                                         style: TextStyle(
                                                             fontSize: 13.0,
                                                             color: AppTheme
                                                                 .AppBarTheme,
-    
                                                             fontWeight:
-                                                                FontWeight.w900),
+                                                                FontWeight
+                                                                    .w900),
                                                       ),
                                                     ),
                                                   ],
@@ -407,7 +429,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 child: Column(
                                                   children: <Widget>[
                                                     //  margin: EdgeInsets.only(left:10.0,right: 10.0),
-    
+
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
@@ -415,13 +437,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               right: 7.5),
                                                       child: Image.asset(
                                                         'assets/images/library.png',
-    
+
                                                         // width:50.0,
                                                         // height:50.0,semanticsLabel: "booking",
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets.only(left:8,top:6),
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 8, top: 6),
                                                       child: Text(
                                                         'Library',
                                                         style: TextStyle(
@@ -429,7 +453,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             color: AppTheme
                                                                 .AppBarTheme,
                                                             fontWeight:
-                                                                FontWeight.w900),
+                                                                FontWeight
+                                                                    .w900),
                                                       ),
                                                     ),
                                                   ],
@@ -462,7 +487,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets.only(left:5.7,top:6),
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5.7,
+                                                              top: 6),
                                                       child: Text(
                                                         'Booking',
                                                         style: TextStyle(
@@ -470,7 +498,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             color: AppTheme
                                                                 .AppBarTheme,
                                                             fontWeight:
-                                                                FontWeight.w900),
+                                                                FontWeight
+                                                                    .w900),
                                                       ),
                                                     ),
                                                   ],
@@ -486,8 +515,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           left: 10.0,
                                           right: 10.0,
                                           top: 15.0,
-                                          bottom: 5
-                                          ),
+                                          bottom: 5),
                                       child: Text('Latest Updates',
                                           style: TextStyle(
                                               fontSize: 14.0,
@@ -497,7 +525,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     Container(
                                       margin: EdgeInsets.only(
-                                          left: 10.0, right: 10.0, top:3,bottom: 5),
+                                          left: 10.0,
+                                          right: 10.0,
+                                          top: 3,
+                                          bottom: 5),
                                       child: Image.asset(
                                         'assets/images/latest_update_bg.png',
                                         fit: BoxFit.fitWidth,
