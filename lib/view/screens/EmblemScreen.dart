@@ -1,4 +1,5 @@
 import 'package:bori_app/model/BookingModel.dart';
+import 'package:simple_rich_text/simple_rich_text.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
 import 'package:bori_app/view/screens/MoreScreen.dart';
@@ -176,14 +177,16 @@ class _EmblemScreenState extends State<EmblemScreen> {
                     Container(
                       margin: EdgeInsets.all(10),
                       //   alignment: AlignmentDirectional.topCenter,
-                      child: Text(
-                        "The BORI emblem is in every way the perfect symbol of the objectives and the scholastic tradition of the Institute. The simple handmade sketch with elegant ornamentation is an inspiration to Indological scholars all over the world! The three ornamented letters ‘B-O-R’ are seen interlinked. They are the initials of the words ‘Bhandarkar Oriental Research’ which form the very name of the Institute.\n\n\n The popular Vedic chant ॥तेजस्वि नावधीतमस्तु॥ is an age-old prayer, made in all serenity, by the community of teachers in unison with the students wishing – “May our learning-together be splendid!” It is significant of the vow that the Gurus of Indology had assumed while establishing the Institute.",
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
+                      child: SimpleRichText(
+                        "The BORI emblem is in every way the perfect symbol of the objectives and the scholastic tradition of the Institute. The simple handmade sketch with elegant ornamentation is an inspiration to Indological scholars all over the world! The three ornamented letters ‘B-O-R’ are seen interlinked. They are the initials of the words ‘Bhandarkar Oriental Research’ which form the very name of the Institute.\n\n\n The popular Vedic chant *॥तेजस्वि नावधीतमस्तु॥* is an age-old prayer, made in all serenity, by the community of teachers in unison with the students wishing – “May our learning-together be splendid!” It is significant of the vow that the Gurus of Indology had assumed while establishing the Institute.",
+                        textAlign: TextAlign.justify,
+                        logIt: false,
+                        textOverflow: TextOverflow.ellipsis,
                         maxLines: 30,
                         style: TextStyle(
                             color: AppTheme.deco,
                             fontSize: 16,
+                            height: 1,
                             fontWeight: FontWeight.w400),
                       ),
                     ),

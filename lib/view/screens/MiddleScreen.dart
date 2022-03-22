@@ -4,6 +4,7 @@ import 'package:bori_app/themes/AppColors.dart';
 import 'package:bori_app/view/screens/AboutScreen.dart';
 import 'package:bori_app/view/screens/ContactScreen.dart';
 import 'package:bori_app/view/screens/EmblemScreen.dart';
+import 'package:bori_app/view/screens/HomeScreen.dart';
 import 'package:bori_app/view/screens/MainActivity.dart';
 import 'package:bori_app/view/screens/VideoListScreen.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
@@ -95,6 +96,19 @@ class _MiddleScreenState extends State<MiddleScreen> {
     }
   }
 
+  Future<bool> _willPopCallback() async {
+    // await showDialog or Show add banners or whatever
+    // then
+
+   return (await
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MainActivity()),
+      ) )??false;
+    // return true if the route to be popped
+    // return true if the route to be popped
+  }
+
   @override
   Widget build(BuildContext context) {
     final _inputController = TextEditingController();
@@ -103,82 +117,85 @@ class _MiddleScreenState extends State<MiddleScreen> {
         statusBarColor: Color.fromRGBO(100, 41, 8, 50),
         //or set color with: Color(0xFF0000FF)
         statusBarIconBrightness: Brightness.dark));
-    return Scaffold(
-      appBar: new AppBar(
-          backgroundColor: AppTheme.AppBarTheme,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: AppTheme.appbar_title),
-            onPressed: () =>
-                Navigator.of(context, rootNavigator: true).pushReplacement(
-              MaterialPageRoute(builder: (context) => MainActivity()),
+    return WillPopScope(
+      onWillPop: _willPopCallback,
+      child: Scaffold(
+        appBar: new AppBar(
+            backgroundColor: AppTheme.AppBarTheme,
+            elevation: 0,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios, color: AppTheme.appbar_title),
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pushReplacement(
+                MaterialPageRoute(builder: (context) => MainActivity()),
+              ),
             ),
-          ),
-          centerTitle: true,
-          title: appBarTitle,
-          actions: <Widget>[
-            new IconButton(
-              icon: actionIcon,
-              onPressed: () {
-                setState(() {
-                  if (actionIcon.icon == Icons.search) {
-                    actionIcon = new Icon(Icons.close);
-                    appBarTitle = new TextField(
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          color: AppTheme.appbar_title,
-                          fontSize: 19.2,
-                        ),
-                        decoration: new InputDecoration(
-                          prefixIcon: new Icon(Icons.search,
-                              color: AppTheme.appbar_title),
-                          hintText: "Search...",
-                          hintStyle: TextStyle(
+            centerTitle: true,
+            title: appBarTitle,
+            actions: <Widget>[
+              new IconButton(
+                icon: actionIcon,
+                onPressed: () {
+                  setState(() {
+                    if (actionIcon.icon == Icons.search) {
+                      actionIcon = new Icon(Icons.close);
+                      appBarTitle = new TextField(
+                          style: TextStyle(
                             fontWeight: FontWeight.w800,
                             color: AppTheme.appbar_title,
                             fontSize: 19.2,
                           ),
-                        ));
-                  } else {
-                    actionIcon = new Icon(
-                      Icons.search,
-                      color: AppTheme.appbar_title,
-                    );
-                    appBarTitle = new Text("Shopping",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          color: AppTheme.appbar_title,
-                          fontSize: 19.2,
-                        ));
-                  }
-                });
-              },
-            ),
-          ]),
-      body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
-        child: new Column(
-          children: [
-            Container(
-              // color: AppTheme.more_bg,
-              decoration: BoxDecoration(
-                color: AppTheme.deco, //color: C
+                          decoration: new InputDecoration(
+                            prefixIcon: new Icon(Icons.search,
+                                color: AppTheme.appbar_title),
+                            hintText: "Search...",
+                            hintStyle: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              color: AppTheme.appbar_title,
+                              fontSize: 19.2,
+                            ),
+                          ));
+                    } else {
+                      actionIcon = new Icon(
+                        Icons.search,
+                        color: AppTheme.appbar_title,
+                      );
+                      appBarTitle = new Text("Shopping",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: AppTheme.appbar_title,
+                            fontSize: 19.2,
+                          ));
+                    }
+                  });
+                },
               ),
-              child: Container(
-                //   padding: const EdgeInsets.only(bottom: 10),
-                padding: const EdgeInsets.all(10),
-                margin: const EdgeInsets.only(top: 10),
-                height: MediaQuery.of(context).size.height,
+            ]),
+        body: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
+          child: new Column(
+            children: [
+              Container(
+                // color: AppTheme.more_bg,
                 decoration: BoxDecoration(
-                  color: AppTheme.more_bg,
-                  borderRadius: new BorderRadius.only(
-                    topLeft: const Radius.circular(40.0),
-                    topRight: const Radius.circular(40.0),
+                  color: AppTheme.deco, //color: C
+                ),
+                child: Container(
+                  //   padding: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.only(top: 10),
+                  height: MediaQuery.of(context).size.height,
+                  decoration: BoxDecoration(
+                    color: AppTheme.more_bg,
+                    borderRadius: new BorderRadius.only(
+                      topLeft: const Radius.circular(40.0),
+                      topRight: const Radius.circular(40.0),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

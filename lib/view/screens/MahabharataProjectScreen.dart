@@ -210,12 +210,13 @@ class _MahabharataProjectScreenState extends State<MahabharataProjectScreen> {
                           alignment: AlignmentDirectional.topCenter,
                           child: Text(
                             "Had institutions had hearts, the Mahabharata would certainly be BORI’s! A giant research project undertaken by the BORI since its inception was The Critical Edition of Mahabharata. Edited by the likes of V. S. Sukhtankar,\nS. K. Belvalkar, S. K. De, Prof. Dr. R. N. Dandekar, the Critical Edition enjoys the status of one of the most prestigious and appreciated editorial work of  the world. This edition was prepared with painstaking efforts of scholars for about five decades consulting 1,259 manuscripts. A comprehensive Prolegomena (Vol. I), written by V. S. Sukhtankar, brings out the material and methodology of the project.\n\n\nThe completed Critical Edition of the Mahabharata (18 Parvan-s; 89000+ verses in the Constituted Text, and an elaborate Critical Apparatus; 19 Volumes: No. of pages: 15000+ demi-quarto size) was released on September 22, 1966 at the hands of Dr. Sarvapalli Radhakrishnan, the then President of India.\n\n\nIt was a dream of the General Editors to compile an Epilogue to the Mahabharata discussing the message of the great book. As a preparatory step for the same a Cultural Index to the Mahabharata was planned. References under various heads were collected on cards numbering over 1,50,000. Two volumes of the Cultural Index have so far been published under the general editorship of Prof. M. A. Mehendale.",
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.justify,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 50,
                             style: TextStyle(
                                 color: AppTheme.deco,
                                 fontSize: 16,
+                                height: 1.4,
                                 fontWeight: FontWeight.w400),
                           ),
                         ),

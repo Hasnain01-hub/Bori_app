@@ -10,24 +10,25 @@ import 'MiddleScreen.dart';
 
 class MainActivity extends StatefulWidget {
   @override
-  _BottomBarState createState() => new _BottomBarState();
+  BottomBarState createState() => new BottomBarState();
 }
 
-class _BottomBarState extends State<MainActivity> {
+class BottomBarState extends State<MainActivity> {
   int _pageIndex = 0;
-  late PageController _pageController;
+  static late PageController pageController;
+
 
   List<Widget> tabPages = [HomeScreen(), MiddleScreen(), MoreScreen()];
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: _pageIndex);
+    pageController = PageController(initialPage: _pageIndex);
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -117,7 +118,7 @@ class _BottomBarState extends State<MainActivity> {
       body: PageView(
         children: tabPages,
         onPageChanged: onPageChanged,
-        controller: _pageController,
+        controller: pageController,
       ),
     );
   }
@@ -129,7 +130,7 @@ class _BottomBarState extends State<MainActivity> {
   }
 
   void onTabTapped(int index) {
-    this._pageController.animateToPage(index,
+    pageController.animateToPage(index,
         duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 

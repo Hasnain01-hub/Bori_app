@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
             'Bhandarkar Oriental Research Institute',
             style: TextStyle(
                 color: AppTheme.appbar_title,
-                fontSize: 19.2,
+                fontSize: 19,
                 fontWeight: FontWeight.w600),
           ),
           automaticallyImplyLeading: false,
@@ -153,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.only(top: 20.0),
-
+    
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(25.0),
@@ -176,9 +176,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fontWeight: FontWeight.normal,
                                       fontSize: 14,
                                     ),
-
+    
                                     // floatingLabelAlignment: FloatingLabelAlignment.center,
-
+    
                                     alignLabelWithHint: true,
                                     suffixIcon: Icon(
                                       Icons.mic_none,
@@ -200,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height:
                                             MediaQuery.of(context).size.height /
                                                 5,
-
+    
                                         //scrollDirection: Axis.vertical,
                                         onPageChanged: (index, reason) {
                                           setState(
@@ -284,7 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         );
                                       }).toList(),
                                     ),
-
+    
                                     Container(
                                       color: AppTheme.more_bg,
                                       width: double.infinity,
@@ -374,7 +374,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         // height:50.0,semanticsLabel: "booking",
                                                       ),
                                                     ),
-
+    
                                                     Padding(
                                                       padding: const EdgeInsets.only(left:8,top:6),
                                                       child: Text(
@@ -384,7 +384,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             fontSize: 13.0,
                                                             color: AppTheme
                                                                 .AppBarTheme,
-
+    
                                                             fontWeight:
                                                                 FontWeight.w900),
                                                       ),
@@ -407,7 +407,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 child: Column(
                                                   children: <Widget>[
                                                     //  margin: EdgeInsets.only(left:10.0,right: 10.0),
-
+    
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
@@ -415,7 +415,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               right: 7.5),
                                                       child: Image.asset(
                                                         'assets/images/library.png',
-
+    
                                                         // width:50.0,
                                                         // height:50.0,semanticsLabel: "booking",
                                                       ),
