@@ -17,11 +17,11 @@ class _SplashState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           PageRouteBuilder(
-            transitionDuration: Duration(seconds: 3),
+            transitionDuration: Duration(seconds: 1),
             transitionsBuilder: (context, animation, animationTime, child) {
               animation = CurvedAnimation(
                 parent: animation,
-                curve: Curves.slowMiddle,
+                curve: Curves.ease,
               );
               return ScaleTransition(
                 scale: animation,
