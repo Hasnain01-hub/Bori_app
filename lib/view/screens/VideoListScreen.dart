@@ -30,7 +30,7 @@ Icon actionIcon = new Icon(
 
 class _VideoListScreenState extends State<VideoListScreen> {
   static String api_key = 'AIzaSyAMcGrwP6bQj1Q8b9ctgefyihsOammGUoU';
-  List results = []; //list to store the results
+  List<YouTubeVideo> results = []; //list to store the results
   YoutubeAPI yt = YoutubeAPI(api_key, type: "video");
   bool isLoaded = false;
   @override
@@ -43,6 +43,7 @@ class _VideoListScreenState extends State<VideoListScreen> {
     try {
       results = await yt.search(
           "BhandarkarOrientalResearchInstitutepune"); //searching for videos related to HD Music
+      print("***********%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"); //logging results in console
       print(results); //logging results in console
       setState(() {
         isLoaded = true; //setting content as loaded
@@ -137,6 +138,7 @@ class _VideoListScreenState extends State<VideoListScreen> {
                       child: Column(children: [
                         Container(
                           child: ListView.builder(
+                            shrinkWrap: true,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                 onTap: () async {
@@ -203,9 +205,7 @@ class _VideoListScreenState extends State<VideoListScreen> {
                                                     topRight:
                                                         Radius.circular(10)),
                                                 child: Image.network(
-                                                  results[index]
-                                                          .thumbnail!['medium']
-                                                      ["url"],
+                                                  results[index].thumbnail.medium.url??'',
                                                   width: MediaQuery.of(context)
                                                       .size
                                                       .width,
