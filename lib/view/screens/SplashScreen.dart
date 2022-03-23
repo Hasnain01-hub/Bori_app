@@ -8,11 +8,23 @@ class SplashScreen extends StatefulWidget {
   _SplashState createState() => _SplashState();
 }
 
-class _SplashState extends State<SplashScreen> {
+class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 3),
+    vsync: this,
+  )..repeat(reverse: false);
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: Offset.zero,
+    end: const Offset(0.0, 1.0),
+  ).animate(_controller);
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeIn,
+  );
   @override
   void initState() {
     Future.delayed(
-      Duration(seconds: 3),
+      Duration(seconds: 4),
       () {
         Navigator.pushReplacement(
           context,
@@ -40,15 +52,63 @@ class _SplashState extends State<SplashScreen> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Image.asset(
-          'assets/images/splash.jpeg',
-          fit: BoxFit.cover,
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          FadeTransition(
+            opacity: _animation,
+            child: Image.asset(
+              'assets/images/app-splash-logo.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Stack(
+                children: [
+                  FadeTransition(
+                    opacity: _animation,
+                    child: Image.asset(
+                      'assets/images/app-splash-bottom.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 200),
+                    child: Center(
+                      child: Text(
+                          "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
+                          style: TextStyle(
+                              fontSize: 22.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900),
+                          textAlign: TextAlign.left),
+                    ),
+                  ),
+                ],
+              ),
+
+              // AnimatedContainer(
+              //   curve: Curves.easeIn,
+              //   duration: Duration(seconds: 10),
+              //   child:Image.asset(
+              //     'assets/images/app-splash-bottom.png',
+              //     fit: BoxFit.cover,
+              //   ) ,
+              // ),
+            ],
+          ),
+        ],
       ),
     );
   }

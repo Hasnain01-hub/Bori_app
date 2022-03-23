@@ -1,18 +1,16 @@
+// ignore_for_file: file_names, prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, unnecessary_new, prefer_const_literals_to_create_immutables, unused_local_variable, non_constant_identifier_names, unused_element, avoid_unnecessary_containers, avoid_types_as_parameter_names
+
 import 'package:bori_app/model/BookingModel.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
 import 'package:bori_app/view/screens/BookingDetailsScreen.dart';
-import 'package:bori_app/view/screens/MoreScreen.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-
-import 'MoreScreen.dart';
 
 int _currentIndex = 0;
 bool pressed_About = false;
@@ -173,124 +171,132 @@ class _BookingListScreenState extends State<BookingListScreen> {
                     itemBuilder: (BuildContext, index) {
                       return Container(
                         margin: EdgeInsets.only(bottom: 20),
-                        child: Column(children: <Widget>[
-                          Column(children: [
-                            Stack(
-                              //alignment:new Alignment(x, y)
-                              alignment: Alignment.topCenter,
-                              children: <Widget>[
+                        child: Column(
+                          children: <Widget>[
+                            Column(
+                              children: [
                                 Stack(
-                                    //alignment:new Alignment(x, y)
-                                    alignment: Alignment.center,
-                                    children: <Widget>[
-                                      Stack(
-                                          alignment: Alignment.center,
-                                          children: <Widget>[
-                                            Container(
-                                              height: 287,
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: AssetImage(
-                                                      "assets/images/card_brown.png"),
+                                  //alignment:new Alignment(x, y)
+                                  alignment: Alignment.topCenter,
+                                  children: <Widget>[
+                                    Stack(
+                                        //alignment:new Alignment(x, y)
+                                        alignment: Alignment.center,
+                                        children: <Widget>[
+                                          Stack(
+                                              alignment: Alignment.center,
+                                              children: <Widget>[
+                                                Container(
+                                                  height: 287,
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                      image: AssetImage(
+                                                          "assets/images/card_brown.png"),
+                                                    ),
+                                                  ),
+                                                  //  height: 287,width: 393,
                                                 ),
-                                              ),
-                                              //  height: 287,width: 393,
-                                            ),
-                                            Container(
-                                                padding:
-                                                    EdgeInsets.only(bottom: 40),
-                                                height: 287,
-                                                width: 393,
-                                                child: Align(
-                                                    alignment:
-                                                        Alignment.bottomCenter,
-                                                    child: Text(
-                                                      title[index],
-                                                      style: TextStyle(
-                                                          color: AppTheme
-                                                              .search_bg,
-                                                          fontSize: 30,
-                                                          fontWeight:
-                                                              FontWeight.w800),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    )))
-                                          ])
-                                    ]),
-                                Container(
-                                    child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                BookingDetailsScreen()));
-                                  },
-                                  child: Stack(
-                                      //alignment:new Alignment(x, y)
-                                      alignment: Alignment.topCenter,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 12, left: 12, right: 12),
+                                                Container(
+                                                    padding: EdgeInsets.only(
+                                                        bottom: 40),
+                                                    height: 287,
+                                                    width: 393,
+                                                    child: Align(
+                                                        alignment: Alignment
+                                                            .bottomCenter,
+                                                        child: Text(
+                                                          title[index],
+                                                          style: TextStyle(
+                                                              color: AppTheme
+                                                                  .search_bg,
+                                                              fontSize: 30,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w800),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        )))
+                                              ])
+                                        ]),
+                                    Container(
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      BookingDetailsScreen()));
+                                        },
+                                        child: Stack(
+                                          //alignment:new Alignment(x, y)
+                                          alignment: Alignment.topCenter,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 12, left: 12, right: 12),
 
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                              image: AssetImage(
-                                                  "assets/images/card_rect.png"),
-                                            )),
-                                            height: 218,
-                                          ),
-                                          //  )
-                                          //   ),
-                                          //  ),
-                                        )
-                                      ]),
-                                ))
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        "assets/images/card_rect.png"),
+                                                  ),
+                                                ),
+                                                height: 218,
+                                              ),
+                                              //  )
+                                              //   ),
+                                              //  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                                Text(
+                                  "Seating Capacity - ",
+                                  style: TextStyle(
+                                      color: AppTheme.AppBarTheme,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                Text(
+                                  "Features - ",
+                                  style: TextStyle(
+                                      color: AppTheme.AppBarTheme,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                Text(
+                                  "Availability - ",
+                                  style: TextStyle(
+                                      color: AppTheme.AppBarTheme,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                Text(
+                                  "Rent - ",
+                                  style: TextStyle(
+                                      color: AppTheme.AppBarTheme,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w900),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 20),
+                                  child: SvgPicture.asset(
+                                    "assets/images/book_btn.svg",
+                                    width: 122,
+                                    height: 35,
+                                  ),
+                                  alignment: Alignment.center,
+                                ),
+
+                                // leading: CircleAvatar(backgroundImage: AssetImage(images[index]),),
                               ],
                             ),
-
-                            Text(
-                              "Seating Capacity - ",
-                              style: TextStyle(
-                                  color: AppTheme.AppBarTheme,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800),
-                            ),
-                            Text(
-                              "Features - ",
-                              style: TextStyle(
-                                  color: AppTheme.AppBarTheme,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800),
-                            ),
-                            Text(
-                              "Availability - ",
-                              style: TextStyle(
-                                  color: AppTheme.AppBarTheme,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800),
-                            ),
-                            Text(
-                              "Rent - ",
-                              style: TextStyle(
-                                  color: AppTheme.AppBarTheme,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w900),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: 20),
-                              child: SvgPicture.asset(
-                                "assets/images/book_btn.svg",
-                                width: 122,
-                                height: 35,
-                              ),
-                              alignment: Alignment.center,
-                            ),
-
-                            // leading: CircleAvatar(backgroundImage: AssetImage(images[index]),),
-                          ]),
-                        ]),
+                          ],
+                        ),
                       );
                     },
                     itemCount: images.length,
