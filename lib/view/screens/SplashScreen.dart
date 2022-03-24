@@ -24,26 +24,11 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     Future.delayed(
-      Duration(seconds: 4),
+      Duration(seconds: 3),
       () {
         Navigator.pushReplacement(
           context,
-          PageRouteBuilder(
-            transitionDuration: Duration(seconds: 1),
-            transitionsBuilder: (context, animation, animationTime, child) {
-              animation = CurvedAnimation(
-                parent: animation,
-                curve: Curves.ease,
-              );
-              return ScaleTransition(
-                scale: animation,
-                child: child,
-              );
-            },
-            pageBuilder: (context, animation, animationTime) {
-              return MainActivity();
-            },
-          ),
+          MaterialPageRoute(builder: (context) => MainActivity()),
         );
       },
     );
@@ -70,43 +55,45 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
               fit: BoxFit.cover,
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Stack(
-                children: [
-                  FadeTransition(
-                    opacity: _animation,
-                    child: Image.asset(
-                      'assets/images/app-splash-bottom.png',
-                      fit: BoxFit.cover,
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              // crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Stack(
+                  children: [
+                    FadeTransition(
+                      opacity: _animation,
+                      child: Image.asset(
+                        'assets/images/app-splash-bottom.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 200),
-                    child: Center(
-                      child: Text(
-                          "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
-                          style: TextStyle(
-                              fontSize: 22.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w900),
-                          textAlign: TextAlign.left),
+                    Padding(
+                      padding: EdgeInsets.only(top: 200),
+                      child: Center(
+                        child: Text(
+                            "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
+                            style: TextStyle(
+                                fontSize: 22.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w900),
+                            textAlign: TextAlign.left),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
 
-              // AnimatedContainer(
-              //   curve: Curves.easeIn,
-              //   duration: Duration(seconds: 10),
-              //   child:Image.asset(
-              //     'assets/images/app-splash-bottom.png',
-              //     fit: BoxFit.cover,
-              //   ) ,
-              // ),
-            ],
+                // AnimatedContainer(
+                //   curve: Curves.easeIn,
+                //   duration: Duration(seconds: 10),
+                //   child:Image.asset(
+                //     'assets/images/app-splash-bottom.png',
+                //     fit: BoxFit.cover,
+                //   ) ,
+                // ),
+              ],
+            ),
           ),
         ],
       ),
