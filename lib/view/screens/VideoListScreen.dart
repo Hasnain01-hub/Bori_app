@@ -114,177 +114,175 @@ class _VideoListScreenState extends State<VideoListScreen> {
             ]),
         body: isLoaded
             ? SingleChildScrollView(
-            child:  Expanded(
-              child: Container(
-                child: Column(children: [
-                  Container(
-                    // color: AppTheme.more_bg,
+            child:  Container(
+              child: Column(children: [
+                Container(
+                  // color: AppTheme.more_bg,
             
+                  decoration: BoxDecoration(
+                    color: AppTheme.deco, //color: C
+                  ),
+                  child: Container(
+                    //   padding: const EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(top: 6),
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                      color: AppTheme.deco, //color: C
-                    ),
-                    child: Container(
-                      //   padding: const EdgeInsets.only(bottom: 10),
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(top: 6),
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: AppTheme.more_bg,
-                        borderRadius: new BorderRadius.only(
-                          topLeft: const Radius.circular(40.0),
-                          topRight: const Radius.circular(40.0),
-                        ),
+                      color: AppTheme.more_bg,
+                      borderRadius: new BorderRadius.only(
+                        topLeft: const Radius.circular(40.0),
+                        topRight: const Radius.circular(40.0),
                       ),
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: results.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return GestureDetector(
-                                    onTap: () async {
-                                      String url = results[index].url;
-                                      if (await canLaunch(url)) {
-                                        await launch(url);
-                                      } else {
-                                        throw 'Could not launch $url';
-                                      }
-                                    },
-                                    child: (Container(
-                                      padding: EdgeInsets.all(10),
-                                      margin: EdgeInsets.only(top: 10),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          index == 0
-                                              ? Container(
+                    ),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: results.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return GestureDetector(
+                                  onTap: () async {
+                                    String url = results[index].url;
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: (Container(
+                                    padding: EdgeInsets.all(10),
+                                    margin: EdgeInsets.only(top: 10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        index == 0
+                                            ? Container(
+                                                child: Row(
+                                                  children: [
+                                                    // Text(
+                                                    //   "TOP TRENDING",
+                                                    //   style: TextStyle(
+                                                    //       fontSize: 18,
+                                                    //       fontWeight: FontWeight.bold,
+                                                    //       fontFamily: "Poppins"),
+                                                    // ),
+                                                    // SizedBox(
+                                                    //   width: 5,
+                                                    // ),
+                                                    // Icon(
+                                                    //   Icons.whatshot,
+                                                    //   color: Colors.red,
+                                                    //   size: 18,
+                                                    // )
+                                                  ],
+                                                ),
+                                              )
+                                            : Container(),
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                        Container(
+                                            decoration: BoxDecoration(
+                                                color: AppTheme.search_bg,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      //   offset: Offset(0, 10),
+                                                      //   blurRadius: 40,
+                                  
+                                                      )
+                                                ]),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(10),
+                                                      topRight:
+                                                          Radius.circular(10)),
+                                                  child: Image.network(
+                                                    results[index].thumbnail.medium.url??'',
+                                                    width: MediaQuery.of(context)
+                                                        .size
+                                                        .width,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(15.0),
                                                   child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
-                                                      // Text(
-                                                      //   "TOP TRENDING",
-                                                      //   style: TextStyle(
-                                                      //       fontSize: 18,
-                                                      //       fontWeight: FontWeight.bold,
-                                                      //       fontFamily: "Poppins"),
-                                                      // ),
-                                                      // SizedBox(
-                                                      //   width: 5,
-                                                      // ),
-                                                      // Icon(
-                                                      //   Icons.whatshot,
+                                                      Flexible(
+                                                        child: Text(
+                                                          results[index]
+                                                              .channelTitle,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight.bold,
+                                                              fontFamily:
+                                                                  "Poppins"),
+                                                        ),
+                                                      ),
+                                                      // index == 0
+                                                      //     ? Icon(
+                                                      //   Icons.favorite,
                                                       //   color: Colors.red,
-                                                      //   size: 18,
+                                                      // )
+                                                      //     : Icon(
+                                                      //   Icons.favorite_border,
+                                                      //   color: Colors.grey,
                                                       // )
                                                     ],
                                                   ),
-                                                )
-                                              : Container(),
-                                          SizedBox(
-                                            height: 16,
-                                          ),
-                                          Container(
-                                              decoration: BoxDecoration(
-                                                  color: AppTheme.search_bg,
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        //   offset: Offset(0, 10),
-                                                        //   blurRadius: 40,
-                                    
-                                                        )
-                                                  ]),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  ClipRRect(
-                                                    borderRadius: BorderRadius.only(
-                                                        topLeft:
-                                                            Radius.circular(10),
-                                                        topRight:
-                                                            Radius.circular(10)),
-                                                    child: Image.network(
-                                                      results[index].thumbnail.medium.url??'',
-                                                      width: MediaQuery.of(context)
-                                                          .size
-                                                          .width,
-                                                      fit: BoxFit.cover,
-                                                    ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 15,
+                                                      right: 15,
+                                                      bottom: 15,
+                                                      top: 10),
+                                                  child: Text(
+                                                    results[index].duration!,
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontFamily: "Poppins"),
+                                                    textAlign: TextAlign.justify,
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(15.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Flexible(
-                                                          child: Text(
-                                                            results[index]
-                                                                .channelTitle,
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            style: TextStyle(
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight.bold,
-                                                                fontFamily:
-                                                                    "Poppins"),
-                                                          ),
-                                                        ),
-                                                        // index == 0
-                                                        //     ? Icon(
-                                                        //   Icons.favorite,
-                                                        //   color: Colors.red,
-                                                        // )
-                                                        //     : Icon(
-                                                        //   Icons.favorite_border,
-                                                        //   color: Colors.grey,
-                                                        // )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 15,
-                                                        right: 15,
-                                                        bottom: 15,
-                                                        top: 10),
-                                                    child: Text(
-                                                      results[index].duration!,
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontFamily: "Poppins"),
-                                                      textAlign: TextAlign.justify,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ))
-                                        ],
-                                      ),
-                                    )),
-                                  );
-                                },
-                                
-                              ),
+                                                ),
+                                              ],
+                                            ))
+                                      ],
+                                    ),
+                                  )),
+                                );
+                              },
+                              
                             ),
                           ),
-                          
-                        ],
-                      ),
+                        ),
+                        
+                      ],
                     ),
-                  )
-                ]),
-              ),
+                  ),
+                )
+              ]),
             ),
               
               )
