@@ -14,8 +14,9 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
     vsync: this,
   )..repeat(reverse: false);
   late final Animation<Offset> _offsetAnimation = Tween<Offset>(
-    begin: Offset.zero,
-    end: const Offset(0.0, 1.0),
+    begin: const Offset(0.0, 1.0),
+    end: const Offset(0.0, -0.01),
+    // end: const Offset(0.0, 1.0),
   ).animate(_controller);
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
@@ -62,23 +63,29 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
               children: [
                 Stack(
                   children: [
-                    FadeTransition(
-                      opacity: _animation,
-                      child: Image.asset(
-                        'assets/images/app-splash-bottom.png',
-                        fit: BoxFit.cover,
+                    SlideTransition(
+                      position: _offsetAnimation,
+                      child: FadeTransition(
+                        opacity: _animation,
+                        child: Image.asset(
+                          'assets/images/app-splash-bottom.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 200),
                       child: Center(
-                        child: Text(
-                            "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
-                            style: TextStyle(
-                                fontSize: 22.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w900),
-                            textAlign: TextAlign.left),
+                        child: FadeTransition(
+                          opacity: _animation,
+                          child: Text(
+                              "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
+                              style: TextStyle(
+                                  fontSize: 22.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w900),
+                              textAlign: TextAlign.left),
+                        ),
                       ),
                     ),
                   ],
