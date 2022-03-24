@@ -9,10 +9,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
+  
+  
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 3),
     vsync: this,
-  )..repeat(reverse: false);
+  )
+  ..repeat(reverse: false);
   late final Animation<Offset> _offsetAnimation = Tween<Offset>(
     begin: const Offset(0.0, 1.0),
     end: const Offset(0.0, -0.01),
@@ -46,63 +49,71 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          FadeTransition(
-            opacity: _animation,
-            child: Image.asset(
-              'assets/images/app-splash-logo.png',
-              fit: BoxFit.cover,
+      body: Container(
+        color: Color.fromRGBO(245, 227, 204, 1),
+        
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
             ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              // crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Stack(
-                  children: [
-                    SlideTransition(
-                      position: _offsetAnimation,
-                      child: FadeTransition(
-                        opacity: _animation,
-                        child: Image.asset(
-                          'assets/images/app-splash-bottom.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 200),
-                      child: Center(
+            FadeTransition(
+              opacity: _animation,
+              child: Image.asset(
+                'assets/images/app-splash-logo.png',
+        
+                fit: BoxFit.cover,
+              ),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                // crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Stack(
+                    children: [
+                      SlideTransition(
+                        position: _offsetAnimation,
                         child: FadeTransition(
                           opacity: _animation,
-                          child: Text(
-                              "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
-                              style: TextStyle(
-                                  fontSize: 22.0,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900),
-                              textAlign: TextAlign.left),
+                          child: Image.asset(
+                            'assets/images/app-splash-bottom.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 200),
+                        child: Center(
+                          child: FadeTransition(
+                            opacity: _animation,
+                            child: Text(
+                                "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
+                                style: TextStyle(
+                                    fontSize: 22.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w900),
+                                textAlign: TextAlign.left),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
 
-                // AnimatedContainer(
-                //   curve: Curves.easeIn,
-                //   duration: Duration(seconds: 10),
-                //   child:Image.asset(
-                //     'assets/images/app-splash-bottom.png',
-                //     fit: BoxFit.cover,
-                //   ) ,
-                // ),
-              ],
+                  // AnimatedContainer(
+                  //   curve: Curves.easeIn,
+                  //   duration: Duration(seconds: 10),
+                  //   child:Image.asset(
+                  //     'assets/images/app-splash-bottom.png',
+                  //     fit: BoxFit.cover,
+                  //   ) ,
+                  // ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
