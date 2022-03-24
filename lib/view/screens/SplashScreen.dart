@@ -9,26 +9,35 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
-  
-  
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 3),
-    vsync: this,
-  )
-  ..repeat(reverse: false);
-  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
-    begin: const Offset(0.0, 1.0),
-    end: const Offset(0.0, -0.01),
-    // end: const Offset(0.0, 1.0),
-  ).animate(_controller);
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.easeIn,
-  );
+  AnimationController? _fadeAnimationController;
+  AnimationController? _slideAnimationController;
+  Animation<double>? _fadeAnimation;
+  Animation<Offset>? _slideAnimation;
+
   @override
   void initState() {
+    _slideAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 3),
+    );
+
+    _fadeAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: Offset(0.0, 1.0),
+      end: Offset(0.0, -0.01),
+    ).animate(_slideAnimationController!);
+
+    _fadeAnimation = CurvedAnimation(
+      parent: _fadeAnimationController!,
+      curve: Curves.easeIn,
+    );
+
     Future.delayed(
-      Duration(seconds: 3),
+      Duration(seconds: 6),
       () {
         Navigator.pushReplacement(
           context,
@@ -36,13 +45,23 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
         );
       },
     );
-
+    _delayAnimation();
     super.initState();
+  }
+
+  Future<void> _delayAnimation() async {
+    try {
+      await _slideAnimationController!.forward().orCancel;
+      await _fadeAnimationController!.forward().orCancel;
+    } on TickerCanceled {
+      //
+    }
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _slideAnimationController!.dispose();
+    _fadeAnimationController!.dispose();
     super.dispose();
   }
 
@@ -51,7 +70,6 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
     return Scaffold(
       body: Container(
         color: Color.fromRGBO(245, 227, 204, 1),
-        
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -59,56 +77,44 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
               height: MediaQuery.of(context).size.height * 0.2,
             ),
             FadeTransition(
-              opacity: _animation,
+              opacity: _fadeAnimation!,
               child: Image.asset(
                 'assets/images/app-splash-logo.png',
-        
                 fit: BoxFit.cover,
               ),
             ),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
-                // crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Stack(
                     children: [
                       SlideTransition(
-                        position: _offsetAnimation,
-                        child: FadeTransition(
-                          opacity: _animation,
-                          child: Image.asset(
-                            'assets/images/app-splash-bottom.png',
-                            fit: BoxFit.cover,
-                          ),
+                        position: _slideAnimation!,
+                        child: Image.asset(
+                          'assets/images/app-splash-bottom.png',
+                          fit: BoxFit.cover,
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 200),
                         child: Center(
                           child: FadeTransition(
-                            opacity: _animation,
+                            opacity: _fadeAnimation!,
                             child: Text(
-                                "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
-                                style: TextStyle(
-                                    fontSize: 22.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w900),
-                                textAlign: TextAlign.left),
+                              "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
+                              style: TextStyle(
+                                fontSize: 22.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w900,
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
-
-                  // AnimatedContainer(
-                  //   curve: Curves.easeIn,
-                  //   duration: Duration(seconds: 10),
-                  //   child:Image.asset(
-                  //     'assets/images/app-splash-bottom.png',
-                  //     fit: BoxFit.cover,
-                  //   ) ,
-                  // ),
                 ],
               ),
             ),
