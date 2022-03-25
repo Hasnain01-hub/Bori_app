@@ -18,7 +18,7 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
   void initState() {
     _slideAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3),
+      duration: Duration(seconds: 2),
     );
 
     _fadeAnimationController = AnimationController(
@@ -37,7 +37,7 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
     );
 
     Future.delayed(
-      Duration(seconds: 6),
+      Duration(seconds: 5),
       () {
         Navigator.pushReplacement(
           context,
