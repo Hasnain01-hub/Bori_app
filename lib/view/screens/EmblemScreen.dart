@@ -178,7 +178,7 @@ class _EmblemScreenState extends State<EmblemScreen> {
                       margin: EdgeInsets.all(10),
                       //   alignment: AlignmentDirectional.topCenter,
                       child: SimpleRichText(
-                        "The BORI emblem is in every way the perfect symbol of the objectives and the scholastic tradition of the Institute. The simple handmade sketch with elegant ornamentation is an inspiration to Indological scholars all over the world! The three ornamented letters ‘B-O-R’ are seen interlinked. They are the initials of the words ‘Bhandarkar Oriental Research’ which form the very name of the Institute.\n\n\n The popular Vedic chant *॥तेजस्वि नावधीतमस्तु॥* is an age-old prayer, made in all serenity, by the community of teachers in unison with the students wishing – “May our learning-together be splendid!” It is significant of the vow that the Gurus of Indology had assumed while establishing the Institute.",
+                        "The BORI emblem is in every way the perfect symbol of the objectives and the scholastic tradition of the Institute. The simple handmade sketch with elegant ornamentation is an inspiration to Indological scholars all over the world! The three ornamented letters ‘B-O-R’ are seen interlinked. They are the initials of the words ‘Bhandarkar Oriental Research’ which form the very name of the Institute.\n\n The popular Vedic chant *॥तेजस्वि नावधीतमस्तु॥* is an age-old prayer, made in all serenity, by the community of teachers in unison with the students wishing – “May our learning-together be splendid!” It is significant of the vow that the Gurus of Indology had assumed while establishing the Institute.",
                         textAlign: TextAlign.justify,
                         logIt: false,
                         textOverflow: TextOverflow.ellipsis,
@@ -186,7 +186,7 @@ class _EmblemScreenState extends State<EmblemScreen> {
                         style: TextStyle(
                             color: AppTheme.deco,
                             fontSize: 16,
-                            height: 1,
+                            height: 1.5,
                             fontWeight: FontWeight.w400),
                       ),
                     ),

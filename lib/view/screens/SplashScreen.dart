@@ -18,7 +18,7 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
   void initState() {
     _slideAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: Duration(milliseconds:1450),
     );
 
     _fadeAnimationController = AnimationController(
@@ -37,7 +37,7 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
     );
 
     Future.delayed(
-      Duration(seconds: 5),
+      Duration(milliseconds: 3710),
       () {
         Navigator.pushReplacement(
           context,
@@ -103,12 +103,13 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
                             opacity: _fadeAnimation!,
                             child: Text(
                               "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
+                              textAlign:TextAlign.center,
                               style: TextStyle(
                                 fontSize: 22.0,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w900,
                               ),
-                              textAlign: TextAlign.left,
+                              
                             ),
                           ),
                         ),

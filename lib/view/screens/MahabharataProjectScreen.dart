@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 Widget appBarTitle = new Text("Mahabharata Project",
     style: TextStyle(
+      
       fontWeight: FontWeight.w800,
       color: AppTheme.appbar_title,
       fontSize: 19.2,
@@ -34,6 +35,10 @@ class _MahabharataProjectScreenState extends State<MahabharataProjectScreen> {
     sampleData.add(new RadioModel(true, 'About', ''));
     sampleData.add(new RadioModel(false, 'Details', ''));
     sampleData.add(new RadioModel(false, 'Goals', ''));
+  }
+  void dispose() {
+    sampleData.clear();
+    super.dispose();
   }
 
   Widget getMediaWidget(BuildContext context, ApiResponse apiResponse) {
@@ -209,14 +214,14 @@ class _MahabharataProjectScreenState extends State<MahabharataProjectScreen> {
                               top: 10, left: 10, right: 10, bottom: 10),
                           alignment: AlignmentDirectional.topCenter,
                           child: Text(
-                            "Had institutions had hearts, the Mahabharata would certainly be BORI’s! A giant research project undertaken by the BORI since its inception was The Critical Edition of Mahabharata. Edited by the likes of V. S. Sukhtankar,\nS. K. Belvalkar, S. K. De, Prof. Dr. R. N. Dandekar, the Critical Edition enjoys the status of one of the most prestigious and appreciated editorial work of  the world. This edition was prepared with painstaking efforts of scholars for about five decades consulting 1,259 manuscripts. A comprehensive Prolegomena (Vol. I), written by V. S. Sukhtankar, brings out the material and methodology of the project.\n\n\nThe completed Critical Edition of the Mahabharata (18 Parvan-s; 89000+ verses in the Constituted Text, and an elaborate Critical Apparatus; 19 Volumes: No. of pages: 15000+ demi-quarto size) was released on September 22, 1966 at the hands of Dr. Sarvapalli Radhakrishnan, the then President of India.\n\n\nIt was a dream of the General Editors to compile an Epilogue to the Mahabharata discussing the message of the great book. As a preparatory step for the same a Cultural Index to the Mahabharata was planned. References under various heads were collected on cards numbering over 1,50,000. Two volumes of the Cultural Index have so far been published under the general editorship of Prof. M. A. Mehendale.",
+                            "Had institutions had hearts, the Mahabharata would certainly be BORI’s! A giant research project undertaken by the BORI since its inception was The Critical Edition of Mahabharata. Edited by the likes of V. S. Sukhtankar, S. K. Belvalkar, S. K. De, Prof. Dr. R. N. Dandekar, the Critical Edition enjoys the status of one of the most prestigious and appreciated editorial work of  the world. This edition was prepared with painstaking efforts of scholars for about five decades consulting 1,259 manuscripts. A comprehensive Prolegomena (Vol. I), written by V. S. Sukhtankar, brings out the material and methodology of the project.\n\nThe completed Critical Edition of the Mahabharata (18 Parvan-s; 89000+ verses in the Constituted Text, and an elaborate Critical Apparatus; 19 Volumes: No. of pages: 15000+ demi-quarto size) was released on September 22, 1966 at the hands of Dr. Sarvapalli Radhakrishnan, the then President of India.\n\nIt was a dream of the General Editors to compile an Epilogue to the Mahabharata discussing the message of the great book. As a preparatory step for the same a Cultural Index to the Mahabharata was planned. References under various heads were collected on cards numbering over 1,50,000. Two volumes of the Cultural Index have so far been published under the general editorship of Prof. M. A. Mehendale.",
                             textAlign: TextAlign.justify,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 50,
                             style: TextStyle(
                                 color: AppTheme.deco,
                                 fontSize: 16,
-                                height: 1.4,
+                                height: 1.5,
                                 fontWeight: FontWeight.w400),
                           ),
                         ),
@@ -469,6 +474,7 @@ class _MahabharataProjectScreenState extends State<MahabharataProjectScreen> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w900),
                               ),
+                              SizedBox(height: 10,),
                               Text(
                                 "- Updating of reference cards should continue.",
                                 textAlign: TextAlign.left,
@@ -539,6 +545,7 @@ class _MahabharataProjectScreenState extends State<MahabharataProjectScreen> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w900),
                               ),
+                              SizedBox(height: 10,),
                               Text(
                                 "-	Translation of the Critical Edition.",
                                 textAlign: TextAlign.left,
@@ -608,8 +615,10 @@ class RadioItem extends StatelessWidget {
 
   RadioItem(this._item);
 
+  
   @override
   Widget build(BuildContext context) {
+    
     return new Container(
       margin: new EdgeInsets.all(8.0),
       child: new Row(
@@ -640,10 +649,14 @@ class RadioItem extends StatelessWidget {
           ),
           new Container(
             // margin: new EdgeInsets.only(left: 10.0),
-            child: new Text(_item.text),
+            child:  Text(_item.text),
           )
+    
+          
         ],
       ),
     );
+    
   }
+  
 }

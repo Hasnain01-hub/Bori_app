@@ -296,7 +296,7 @@ Future<bool> _willPopCallback() async {
                       ),
                       Divider(
                         color: AppTheme.divider,
-                        thickness: 3,
+                        thickness: 2,
                       ),
                       OutlinedButton(
                         style: OutlinedButton.styleFrom(
@@ -346,7 +346,7 @@ Future<bool> _willPopCallback() async {
                       ),
                       Divider(
                         color: AppTheme.divider,
-                        thickness: 3,
+                        thickness: 2,
                       ),
                       OutlinedButton(
                         style: OutlinedButton.styleFrom(
@@ -398,7 +398,7 @@ Future<bool> _willPopCallback() async {
                       ),
                       Divider(
                         color: AppTheme.divider,
-                        thickness: 3,
+                        thickness: 2,
                       ),
                       OutlinedButton(
                         style: OutlinedButton.styleFrom(
@@ -450,7 +450,7 @@ Future<bool> _willPopCallback() async {
                       ),
                       Divider(
                         color: AppTheme.divider,
-                        thickness: 3,
+                        thickness: 2,
                       ),
                       OutlinedButton(
                         style: OutlinedButton.styleFrom(

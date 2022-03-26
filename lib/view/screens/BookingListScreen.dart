@@ -198,7 +198,7 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                                 ),
                                                 Container(
                                                     padding: EdgeInsets.only(
-                                                        bottom: 40),
+                                                        bottom: 30),
                                                     height: 287,
                                                     width: 393,
                                                     child: Align(
@@ -255,33 +255,38 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                 ),
 
                                 Text(
-                                  "Seating Capacity - ",
+                                  "Seating Capacity -\nFeatures - \nAvailability - \nRent - ",
+                                  textAlign: TextAlign.start,
                                   style: TextStyle(
+                                    letterSpacing: 0.8,
                                       color: AppTheme.AppBarTheme,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w800),
                                 ),
-                                Text(
-                                  "Features - ",
-                                  style: TextStyle(
-                                      color: AppTheme.AppBarTheme,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w800),
-                                ),
-                                Text(
-                                  "Availability - ",
-                                  style: TextStyle(
-                                      color: AppTheme.AppBarTheme,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w800),
-                                ),
-                                Text(
-                                  "Rent - ",
-                                  style: TextStyle(
-                                      color: AppTheme.AppBarTheme,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w900),
-                                ),
+                                // Text(
+                                //   "Features - ",
+                                //   textAlign: TextAlign.start,
+                                //   style: TextStyle(
+                                //       color: AppTheme.AppBarTheme,
+                                //       fontSize: 14,
+                                //       fontWeight: FontWeight.w800),
+                                // ),
+                                // Text(
+                                //   "Availability - ",
+                                //   textAlign: TextAlign.start,
+                                //   style: TextStyle(
+                                //       color: AppTheme.AppBarTheme,
+                                //       fontSize: 14,
+                                //       fontWeight: FontWeight.w800),
+                                // ),
+                                // Text(
+                                //   "Rent - ",
+                                //   textAlign: TextAlign.start,
+                                //   style: TextStyle(
+                                //       color: AppTheme.AppBarTheme,
+                                //       fontSize: 14,
+                                //       fontWeight: FontWeight.w900),
+                                // ),
                                 Container(
                                   margin: EdgeInsets.only(top: 20),
                                   child: SvgPicture.asset(

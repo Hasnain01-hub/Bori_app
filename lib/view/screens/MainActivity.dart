@@ -63,6 +63,7 @@ class BottomBarState extends State<MainActivity> {
             bottomLeft: Radius.circular(30.0),
           ),
           child: BottomNavigationBar(
+            
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: false,
             showUnselectedLabels: false,
@@ -115,6 +116,8 @@ class BottomBarState extends State<MainActivity> {
         ),
       ),
       body: PageView(
+
+  physics: NeverScrollableScrollPhysics(),
         children: tabPages,
         onPageChanged: onPageChanged,
         controller: pageController,

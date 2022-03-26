@@ -397,7 +397,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              left: 8, top: 6),
+                                                              left: 9.9, top: 6),
                                                       child: Text(
                                                         'Admission',
                                                         textAlign:
@@ -445,7 +445,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              left: 8, top: 6),
+                                                              left: 9.6, top: 6),
                                                       child: Text(
                                                         'Library',
                                                         style: TextStyle(
@@ -489,7 +489,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              left: 5.7,
+                                                              left: 6.1,
                                                               top: 6),
                                                       child: Text(
                                                         'Booking',
@@ -529,13 +529,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                           right: 10.0,
                                           top: 3,
                                           bottom: 5),
-                                      child: Image.asset(
-                                        'assets/images/latest_update_bg.png',
-                                        fit: BoxFit.fitWidth,
-                                        width: double.infinity,
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                6.5,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                                BorderRadius.circular(20.0),
+                                        child: Image.asset(
+                                          'assets/images/latest_update_bg.png',
+                                          fit: BoxFit.fitWidth,
+                                          width: double.infinity,
+                                          height:
+                                              MediaQuery.of(context).size.height /
+                                                  6.5,
+                                        ),
                                       ),
                                     ),
                                   ],

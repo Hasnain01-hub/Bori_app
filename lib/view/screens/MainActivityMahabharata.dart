@@ -40,6 +40,7 @@ class _BottomBarState extends State<MainActivityMahabharata> {
     return Scaffold(
       backgroundColor: AppTheme.more_bg,
       body: PageView(
+        physics: NeverScrollableScrollPhysics(),
         children: tabPages,
         onPageChanged: onPageChanged,
         controller: _pageController,

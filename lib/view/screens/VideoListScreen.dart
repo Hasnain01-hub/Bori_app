@@ -257,7 +257,7 @@ class _VideoListScreenState extends State<VideoListScreen> {
                                                       bottom: 15,
                                                       top: 10),
                                                   child: Text(
-                                                    results[index].duration!,
+                                                    results[index].duration.toString(),
                                                     style: TextStyle(
                                                         fontSize: 14,
                                                         fontWeight:
@@ -292,6 +292,13 @@ class _VideoListScreenState extends State<VideoListScreen> {
                   appearance: CircularSliderAppearance(
                     spinnerMode: true,
                     size: 40,
+                    customColors: CustomSliderColors(
+                      trackColor: Colors.brown,
+                      progressBarColor: Colors.brown,
+                      
+                      shadowMaxOpacity: 0.0,
+                      
+                    ),
                   ),
                 ),
               ));
