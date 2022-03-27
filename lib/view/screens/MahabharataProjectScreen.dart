@@ -465,7 +465,7 @@ class _MahabharataProjectScreenState extends State<MahabharataProjectScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "(1)Next steps in ongoing work:",
+                                "(1) Next steps in ongoing work:",
                                 textAlign: TextAlign.left,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 30,
@@ -474,7 +474,7 @@ class _MahabharataProjectScreenState extends State<MahabharataProjectScreen> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w900),
                               ),
-                              SizedBox(height: 10,),
+                              // SizedBox(height: 10,),
                               Text(
                                 "- Updating of reference cards should continue.",
                                 textAlign: TextAlign.left,
@@ -545,7 +545,7 @@ class _MahabharataProjectScreenState extends State<MahabharataProjectScreen> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w900),
                               ),
-                              SizedBox(height: 10,),
+                              // SizedBox(height: 10,),
                               Text(
                                 "-	Translation of the Critical Edition.",
                                 textAlign: TextAlign.left,

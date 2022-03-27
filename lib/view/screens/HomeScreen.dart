@@ -103,29 +103,29 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Container(
             child: new Column(children: [
           Flexible(
-            child: SingleChildScrollView(
+            child: Container(
               child: Container(
-                child: Container(
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: AppTheme.deco, //color: C
-                        ),
-                        child: Container(
-                            //   padding: const EdgeInsets.only(bottom: 10),
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.only(
-                                top: 10, left: 20, right: 10),
-                            margin: const EdgeInsets.only(top: 10),
-                            decoration: BoxDecoration(
-                              color: AppTheme.more_bg, //color: Colors.green,
-                              borderRadius: new BorderRadius.only(
-                                topLeft: const Radius.circular(40.0),
-                                topRight: const Radius.circular(40.0),
-                              ),
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: AppTheme.deco, //color: C
+                      ),
+                      child: Container(
+                          //   padding: const EdgeInsets.only(bottom: 10),
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 20, right: 10),
+                          margin: const EdgeInsets.only(top: 10),
+                          decoration: BoxDecoration(
+                            color: AppTheme.more_bg, //color: Colors.green,
+                            borderRadius: new BorderRadius.only(
+                              topLeft: const Radius.circular(40.0),
+                              topRight: const Radius.circular(40.0),
                             ),
-                            child: Container(
+                          ),
+                          child: Container(
+                              child: SingleChildScrollView(
                                 child: Column(children: [
-                              Container(
+                                                            Container(
                                 margin: EdgeInsets.symmetric(horizontal: 10.0),
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.only(top: 20.0),
-
+                              
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(25.0),
@@ -178,9 +178,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fontWeight: FontWeight.normal,
                                       fontSize: 14,
                                     ),
-
+                              
                                     // floatingLabelAlignment: FloatingLabelAlignment.center,
-
+                              
                                     alignLabelWithHint: true,
                                     suffixIcon: Icon(
                                       Icons.mic_none,
@@ -188,8 +188,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-                              ),
-                              SingleChildScrollView(
+                                                            ),
+                                                            SingleChildScrollView(
                                   child: Container(
                                 margin: EdgeInsets.only(top: 10),
                                 child: Column(
@@ -202,7 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height:
                                             MediaQuery.of(context).size.height /
                                                 5,
-
+                              
                                         //scrollDirection: Axis.vertical,
                                         onPageChanged: (index, reason) {
                                           setState(
@@ -301,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         );
                                       }).toList(),
                                     ),
-
+                              
                                     Container(
                                       color: AppTheme.more_bg,
                                       width: double.infinity,
@@ -393,7 +393,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         // height:50.0,semanticsLabel: "booking",
                                                       ),
                                                     ),
-
+                              
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
@@ -429,7 +429,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 child: Column(
                                                   children: <Widget>[
                                                     //  margin: EdgeInsets.only(left:10.0,right: 10.0),
-
+                              
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
@@ -437,7 +437,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               right: 7.5),
                                                       child: Image.asset(
                                                         'assets/images/library.png',
-
+                              
                                                         // width:50.0,
                                                         // height:50.0,semanticsLabel: "booking",
                                                       ),
@@ -544,10 +544,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ],
                                 ),
-                              ))
-                            ]))))),
-                //  Expanded(child: getMediaWidget(context, apiResponse)),
-              ),
+                                                            ))
+                                                          ]),
+                              ))))),
+              //  Expanded(child: getMediaWidget(context, apiResponse)),
             ),
           )
         ])));
