@@ -1,6 +1,7 @@
 import 'package:bori_app/model/BookingModel.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
+import 'package:bori_app/view/screens/payment/Payment.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -456,14 +457,23 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                 style: TextStyle(
                                     fontSize: 16, color: AppTheme.AppBarTheme)),
                           ),
-                          Container(
-                            margin: EdgeInsets.all(30),
-                            child: SvgPicture.asset(
-                              "assets/images/proceed_btn.svg",
-                              width: 122,
-                              height: 35,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          InstaMojoDemo(fees:FeeValue)));
+                            },
+                            child: Container(
+                              margin: EdgeInsets.all(30),
+                              child: SvgPicture.asset(
+                                "assets/images/proceed_btn.svg",
+                                width: 122,
+                                height: 35,
+                              ),
+                              alignment: Alignment.center,
                             ),
-                            alignment: Alignment.center,
                           ),
                         ],
                       ),
