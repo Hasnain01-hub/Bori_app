@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
@@ -87,33 +87,36 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
           child: isLoading
               ? //check loadind status
               CircularProgressIndicator()
-              : WebView(
-                initialUrl: selectedUrl,
+              : InAppWebView(
+                initialUrlRequest: URLRequest(
+              url: Uri.tryParse(selectedUrl!),
 
-                javascriptMode: JavascriptMode.unrestricted,
+            ),
 
-                onWebViewCreated: (WebViewController webViewController) {
-                  _controller.complete(webViewController);
+                // javascriptMode: JavascriptMode.unrestricted,
+
+                onWebViewCreated: (InAppWebViewController webViewController) {
+                  // _controller.complete(webViewController);
                 },
-                onProgress: (int progress) {
+                onProgressChanged: (InAppWebViewController controller,int progress) {
                   setState(() {
                     this.progress = progress / 100;
                   });
                 },
-                //             onUpdateVisitedHistory: (_, Uri uri, __) {
-                //               String url=uri.toString();
-                //               print(uri);
-                //               // uri containts newly loaded url
-                //               if (mounted) {
-                //                 if (url.contains('https://www.google.com/')) {
-                // //Take the payment_id parameter of the url.
-                //                   String? paymentRequestId = uri.queryParameters['payment_id'];
-                //                   print("value is: " +paymentRequestId.toString());
-                // //calling this method to check payment status
-                //                   _checkPaymentStatus(paymentRequestId.toString());
-                //                 }
-                //               }
-                //             },
+                            onUpdateVisitedHistory: (_, Uri? uri, __) {
+                              String url=uri.toString();
+                              print(uri);
+                              // uri containts newly loaded url
+                              if (mounted) {
+                                if (url.contains('https://www.google.com/')) {
+                //Take the payment_id parameter of the url.
+                                  String? paymentRequestId = uri?.queryParameters['payment_id'];
+                                  print("value is: " +paymentRequestId.toString());
+                //calling this method to check payment status
+                                  _checkPaymentStatus(paymentRequestId.toString());
+                                }
+                              }
+                            },
               ),
         ),
       ),

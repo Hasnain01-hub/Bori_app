@@ -29,6 +29,7 @@
 	<key>UISupportedInterfaceOrientations</key>
 <string>google_maps_in_flutter</string>
         <key>CFBundlePackageType</key>
+		
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
@@ -47,6 +48,7 @@
 	<string></string>
 	<key>io.flutter.embedded_views_preview</key>
 <string>YES</string>
+
 
 </dict>
 </plist>
