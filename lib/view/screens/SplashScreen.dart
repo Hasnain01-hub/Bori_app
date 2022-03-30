@@ -28,7 +28,7 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
 
     _slideAnimation = Tween<Offset>(
       begin: Offset(0.0, 1.0),
-      end: Offset(0.0, -0.01),
+      end: Offset(0.0, 0.0),
     ).animate(_slideAnimationController!);
 
     _fadeAnimation = CurvedAnimation(

@@ -1,21 +1,15 @@
+// ignore_for_file: file_names, prefer_const_constructors, unnecessary_new, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unused_element, avoid_unnecessary_containers, unused_local_variable, use_key_in_widget_constructors
+
 import 'package:bori_app/model/BookingModel.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
-import 'package:bori_app/view/screens/MainActivity.dart';
-import 'package:bori_app/view/screens/MainActivityAbout.dart';
-import 'package:bori_app/view/screens/MoreScreen.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import 'MoreScreen.dart';
-
-int _currentIndex = 0;
 bool pressed_About = false;
 bool pressed_elebrum = false;
 bool pressed_contact = false;
@@ -208,16 +202,60 @@ class _AboutScreenState extends State<AboutScreen> {
                             //   alignment: AlignmentDirectional.topCenter,
 
                             child: Text(
-                              'The Bhandarkar Oriental Research Institute, Pune, was founded on July 6, 1917 to commemorate the name and the work of Ramkrishna Gopal Bhandarakar, the foremost pioneer of scientific Orientology in India. The Institute concerns itself with research activity in the field of Orientology with a vision to enlighten the world about the all-comprehensive knowledge generated in the East, especially, in India.\nThe institute has one of the largest collections of rare books and manuscripts spanning over 1,25,000 books and over 28,000 manuscripts collected over a period of 90 years covering practically every aspect of Orientology. This collection covers several languages and scripts such as Sanskrit, Prakrit, Indian regional languages, Classical,Asean and European languages.\nIn addition, through the pursuits of its research projects in the Mahabharata and Prakrit Languages it has created invaluable reference archives. The Institute also hosts a Manuscripts Resource and Conservation Centre under the auspices of the National Mission for Manuscripts, a project of the Cultural Ministry of India. In short, the Institute has been effectively playing the role of a very significant centre of Indological Studies and Research over the last nine decades.',
+                              'The Bhandarkar Oriental Research Institute, Pune, was founded on July 6, 1917 to commemorate the '
+                                  'name and the work of Ramkrishna Gopal Bhandarakar, the foremost pioneer of scientific '
+                                  'Orientology in India. The Institute concerns itself with research activity in the field of '
+                                  'Orientology with a vision to enlighten the world about the all-comprehensive knowledge '
+                                  'generated in the East, especially, in India.',
                               textAlign: TextAlign.justify,
                               overflow: TextOverflow.ellipsis,
-                             
-                              maxLines: 30,
+                              maxLines: 40,
                               style: TextStyle(
                                   color: AppTheme.deco,
                                   fontSize: 16,
                                   height: 1.4,
-                                  fontWeight: FontWeight.w400),
+                                  fontWeight: FontWeight.w400,),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            //   alignment: AlignmentDirectional.topCenter,
+
+                            child: Text(
+                              'The institute has one of the largest collections of rare books and manuscripts '
+                                  'spanning over 1,25,000 books and over 28,000 manuscripts collected over a period of 90 '
+                                  'years covering practically every aspect of Orientology. This collection covers several '
+                                  'languages and scripts such as Sanskrit, Prakrit, Indian regional languages, Classical,Asean '
+                                  'and European languages.',
+                              textAlign: TextAlign.justify,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 40,
+                              style: TextStyle(
+                                color: AppTheme.deco,
+                                fontSize: 16,
+                                height: 1.4,
+                                fontWeight: FontWeight.w400,),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            //   alignment: AlignmentDirectional.topCenter,
+
+                            child: Text(
+                              'In addition, through the pursuits of its research projects in the '
+                                  'Mahabharata and Prakrit Languages it has created invaluable reference archives. '
+                                  'The Institute also hosts a Manuscripts Resource and Conservation Centre under the auspices '
+                                  'of the National Mission for Manuscripts, a project of the Cultural Ministry of India. '
+                                  'In short, the Institute has been effectively playing the role of a very significant centre '
+                                  'of Indological Studies and Research over the last nine decades.',
+                              textAlign: TextAlign.justify,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 40,
+                              style: TextStyle(
+                                color: AppTheme.deco,
+                                fontSize: 16,
+                                height: 1.4,
+                                fontWeight: FontWeight.w400,),
                             ),
                           ),
                         ],
