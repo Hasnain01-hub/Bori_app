@@ -19,7 +19,7 @@ import 'AboutScreen.dart';
 
 int _currentIndex = 0;
 final List<String> imagesList = [
-  'assets/images/slide1.png',
+  'assets/images/know.png',
   'assets/images/manuscript.png',
 ];
 
@@ -113,7 +113,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           //   padding: const EdgeInsets.only(bottom: 10),
                           alignment: Alignment.center,
                           padding: const EdgeInsets.only(
-                              top: 10, left: 20, right: 10),
+                            top: 10,
+                            left: 10,
+                            right: 10,
+                          ),
                           margin: const EdgeInsets.only(top: 10),
                           decoration: BoxDecoration(
                             color: AppTheme.more_bg, //color: Colors.green,
@@ -124,8 +127,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: Container(
                               child: SingleChildScrollView(
-                                child: Column(children: [
-                                                            Container(
+                            child: Column(children: [
+                              Container(
                                 margin: EdgeInsets.symmetric(horizontal: 10.0),
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
@@ -155,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.only(top: 20.0),
-                              
+
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(25.0),
@@ -178,9 +181,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fontWeight: FontWeight.normal,
                                       fontSize: 14,
                                     ),
-                              
+
                                     // floatingLabelAlignment: FloatingLabelAlignment.center,
-                              
+
                                     alignLabelWithHint: true,
                                     suffixIcon: Icon(
                                       Icons.mic_none,
@@ -188,8 +191,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-                                                            ),
-                                                            SingleChildScrollView(
+                              ),
+                              SingleChildScrollView(
                                   child: Container(
                                 margin: EdgeInsets.only(top: 10),
                                 child: Column(
@@ -202,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height:
                                             MediaQuery.of(context).size.height /
                                                 5,
-                              
+
                                         //scrollDirection: Axis.vertical,
                                         onPageChanged: (index, reason) {
                                           setState(
@@ -301,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         );
                                       }).toList(),
                                     ),
-                              
+
                                     Container(
                                       color: AppTheme.more_bg,
                                       width: double.infinity,
@@ -312,7 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           bottom: 5),
                                       child: Text('BORI Exclusive',
                                           style: TextStyle(
-                                              fontSize: 14.0,
+                                              fontSize: 18.0,
                                               color: AppTheme.AppBarTheme,
                                               fontWeight: FontWeight.w900),
                                           textAlign: TextAlign.left),
@@ -393,17 +396,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         // height:50.0,semanticsLabel: "booking",
                                                       ),
                                                     ),
-                              
+
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              left: 9.9, top: 6),
+                                                              left: 9.9,
+                                                              top: 6),
                                                       child: Text(
                                                         'Admission',
                                                         textAlign:
                                                             TextAlign.center,
                                                         style: TextStyle(
-                                                            fontSize: 13.0,
+                                                            fontSize: 14.0,
                                                             color: AppTheme
                                                                 .AppBarTheme,
                                                             fontWeight:
@@ -429,7 +433,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 child: Column(
                                                   children: <Widget>[
                                                     //  margin: EdgeInsets.only(left:10.0,right: 10.0),
-                              
+
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
@@ -437,7 +441,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               right: 7.5),
                                                       child: Image.asset(
                                                         'assets/images/library.png',
-                              
+
                                                         // width:50.0,
                                                         // height:50.0,semanticsLabel: "booking",
                                                       ),
@@ -445,11 +449,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              left: 9.6, top: 6),
+                                                              left: 9.6,
+                                                              top: 6),
                                                       child: Text(
                                                         'Library',
                                                         style: TextStyle(
-                                                            fontSize: 13.0,
+                                                            fontSize: 14.0,
                                                             color: AppTheme
                                                                 .AppBarTheme,
                                                             fontWeight:
@@ -494,7 +499,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       child: Text(
                                                         'Booking',
                                                         style: TextStyle(
-                                                            fontSize: 13.0,
+                                                            fontSize: 14.0,
                                                             color: AppTheme
                                                                 .AppBarTheme,
                                                             fontWeight:
@@ -518,7 +523,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           bottom: 5),
                                       child: Text('Latest Updates',
                                           style: TextStyle(
-                                              fontSize: 14.0,
+                                              fontSize: 18.0,
                                               color: AppTheme.AppBarTheme,
                                               fontWeight: FontWeight.w900),
                                           textAlign: TextAlign.left),
@@ -531,22 +536,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                           bottom: 5),
                                       child: ClipRRect(
                                         borderRadius:
-                                                BorderRadius.circular(20.0),
+                                            BorderRadius.circular(20.0),
                                         child: Image.asset(
                                           'assets/images/latest_update_bg.png',
                                           fit: BoxFit.fitWidth,
                                           width: double.infinity,
-                                          height:
-                                              MediaQuery.of(context).size.height /
-                                                  6.5,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              6.5,
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                                            ))
-                                                          ]),
-                              ))))),
+                              ))
+                            ]),
+                          ))))),
               //  Expanded(child: getMediaWidget(context, apiResponse)),
             ),
           )

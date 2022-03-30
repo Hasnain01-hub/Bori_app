@@ -1,18 +1,15 @@
+// ignore_for_file: file_names, prefer_const_constructors, unnecessary_new, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unused_element, avoid_unnecessary_containers, unused_local_variable, use_key_in_widget_constructors
+
 import 'package:bori_app/model/BookingModel.dart';
 import 'package:simple_rich_text/simple_rich_text.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
-import 'package:bori_app/view/screens/MoreScreen.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-
-import 'MoreScreen.dart';
 
 int _currentIndex = 0;
 bool pressed_About = false;
@@ -178,7 +175,28 @@ class _EmblemScreenState extends State<EmblemScreen> {
                       margin: EdgeInsets.all(10),
                       //   alignment: AlignmentDirectional.topCenter,
                       child: SimpleRichText(
-                        "The BORI emblem is in every way the perfect symbol of the objectives and the scholastic tradition of the Institute. The simple handmade sketch with elegant ornamentation is an inspiration to Indological scholars all over the world! The three ornamented letters ‘B-O-R’ are seen interlinked. They are the initials of the words ‘Bhandarkar Oriental Research’ which form the very name of the Institute.\nThe popular Vedic chant *॥तेजस्वि नावधीतमस्तु॥* is an age-old prayer, made in all serenity, by the community of teachers in unison with the students wishing – “May our learning-together be splendid!” It is significant of the vow that the Gurus of Indology had assumed while establishing the Institute.",
+                        "The BORI emblem is in every way the perfect symbol of the objectives and the scholastic tradition of "
+                        "the Institute. The simple handmade sketch with elegant ornamentation is an inspiration to "
+                        "Indological scholars all over the world! The three ornamented letters ‘B-O-R’ are seen interlinked. "
+                        "They are the initials of the words ‘Bhandarkar Oriental Research’ which form the very name of the Institute.",
+                        textAlign: TextAlign.justify,
+                        logIt: false,
+                        textOverflow: TextOverflow.ellipsis,
+                        maxLines: 30,
+                        style: TextStyle(
+                            color: AppTheme.deco,
+                            fontSize: 16,
+                            height: 1.5,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      //   alignment: AlignmentDirectional.topCenter,
+                      child: SimpleRichText(
+                        "The popular Vedic chant *॥तेजस्वि नावधीतमस्तु॥* is an age-old prayer, made in all serenity, by the community of "
+                        "teachers in unison with the students wishing – “May our learning-together be splendid!” "
+                        "It is significant of the vow that the Gurus of Indology had assumed while establishing the Institute.",
                         textAlign: TextAlign.justify,
                         logIt: false,
                         textOverflow: TextOverflow.ellipsis,

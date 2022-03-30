@@ -1,17 +1,15 @@
+// ignore_for_file: file_names, prefer_const_constructors, unnecessary_new, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unused_element, avoid_unnecessary_containers, unused_local_variable, use_key_in_widget_constructors
+
 import 'package:bori_app/model/BookingModel.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
-import 'package:bori_app/view/screens/MoreScreen.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-
-import 'MoreScreen.dart';
 
 int _currentIndex = 0;
 bool pressed_About = false;
@@ -202,10 +200,66 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           margin: EdgeInsets.all(10),
                           //   alignment: AlignmentDirectional.topCenter,
                           child: Text(
-                            "The BORI Library, recently named after the legendary Dr. R. N. Dandekar, is internationally recognized as a specialized library in the field of Orientology. It is a home to above 1,25,000 handpicked books pertaining to all the aspects of Oriental Studies. About 20,000 of the books are quite rare to find the world over.\nBooks in over 25 Indian and European languages are housed here. Prominent languages among them are Sanskrit, Pali, different Prakrits, Hindi, Marathi, English, French, German, etc. The chronological range of the books spans over the early days of printing till date are available for the benefit of scholars.\nThe library was founded with a valuable personal collection of about 2200 books donated by Sir Ramakrishna Gopal Bhandarkar himself. Stalwarts of the likes of P. K. Gode, A. D. Pusalkar, S. V. Sohoni, R. N. Dandekar, P. V. Bapat and P. L. Vaidya have donated their personal collections to the library. Volumes of esteemed national and international journals are procured in exchange with the Annals.\nToday around 2,500 scholars and students visit the institute per year seeking references for their graduate, post- graduate, doctoral and post doctoral research projects.",
+                            "The BORI Library, recently named after the legendary Dr. R. N. Dandekar, is internationally recognized "
+                            "as a specialized library in the field of Orientology. It is a home to above 1,25,000 handpicked "
+                            "books pertaining to all the aspects of Oriental Studies. About 20,000 of the books are quite rare "
+                            "to find the world over.",
                             textAlign: TextAlign.justify,
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 30,
+                            maxLines: 40,
+                            style: TextStyle(
+                                color: AppTheme.deco,
+                                fontSize: 16,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          //   alignment: AlignmentDirectional.topCenter,
+                          child: Text(
+                            "Books in over 25 Indian and European languages are housed here. Prominent "
+                                "languages among them are Sanskrit, Pali, different Prakrits, Hindi, Marathi, English, French, German, "
+                                "etc. The chronological range of the books spans over the early days of printing till date are "
+                                "available for the benefit of scholars.",
+                            textAlign: TextAlign.justify,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 40,
+                            style: TextStyle(
+                                color: AppTheme.deco,
+                                fontSize: 16,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          //   alignment: AlignmentDirectional.topCenter,
+                          child: Text(
+                                "The library was founded with a valuable personal collection "
+                                "of about 2200 books donated by Sir Ramakrishna Gopal Bhandarkar himself. Stalwarts of the likes of "
+                                "P. K. Gode, A. D. Pusalkar, S. V. Sohoni, R. N. Dandekar, P. V. Bapat and P. L. Vaidya have donated "
+                                "their personal collections to the library. Volumes of esteemed national and international journals "
+                                "are procured in exchange with the Annals.",
+                            textAlign: TextAlign.justify,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 40,
+                            style: TextStyle(
+                                color: AppTheme.deco,
+                                fontSize: 16,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          //   alignment: AlignmentDirectional.topCenter,
+                          child: Text(
+                                "Today around 2,500 scholars and students visit the institute per year seeking references "
+                                "for their graduate, post- graduate, doctoral and post doctoral research projects.",
+                            textAlign: TextAlign.justify,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 40,
                             style: TextStyle(
                                 color: AppTheme.deco,
                                 fontSize: 16,

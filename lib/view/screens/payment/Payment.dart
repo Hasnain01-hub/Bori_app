@@ -1,11 +1,9 @@
-import 'dart:io';
+// ignore_for_file: file_names, annotate_overrides, prefer_const_constructors, override_on_non_overriding_member, avoid_print, unused_field, avoid_unnecessary_containers, prefer_typing_uninitialized_variables
+
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
@@ -27,9 +25,9 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
   String? selectedUrl;
   void initState() {
     createRequest();
-    
-      print(selectedUrl);
-    
+
+    print(selectedUrl);
+
     super.initState();
     //creating the HTTP request
   }
@@ -88,36 +86,37 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
               ? //check loadind status
               CircularProgressIndicator()
               : InAppWebView(
-                initialUrlRequest: URLRequest(
-              url: Uri.tryParse(selectedUrl!),
+                  initialUrlRequest: URLRequest(
+                    url: Uri.tryParse(selectedUrl!),
+                  ),
 
-            ),
+                  // javascriptMode: JavascriptMode.unrestricted,
 
-                // javascriptMode: JavascriptMode.unrestricted,
-
-                onWebViewCreated: (InAppWebViewController webViewController) {
-                  // _controller.complete(webViewController);
-                },
-                onProgressChanged: (InAppWebViewController controller,int progress) {
-                  setState(() {
-                    this.progress = progress / 100;
-                  });
-                },
-                            onUpdateVisitedHistory: (_, Uri? uri, __) {
-                              String url=uri.toString();
-                              print(uri);
-                              // uri containts newly loaded url
-                              if (mounted) {
-                                if (url.contains('https://www.google.com/')) {
-                //Take the payment_id parameter of the url.
-                                  String? paymentRequestId = uri?.queryParameters['payment_id'];
-                                  print("value is: " +paymentRequestId.toString());
-                //calling this method to check payment status
-                                  _checkPaymentStatus(paymentRequestId.toString());
-                                }
-                              }
-                            },
-              ),
+                  onWebViewCreated: (InAppWebViewController webViewController) {
+                    // _controller.complete(webViewController);
+                  },
+                  onProgressChanged:
+                      (InAppWebViewController controller, int progress) {
+                    setState(() {
+                      this.progress = progress / 100;
+                    });
+                  },
+                  onUpdateVisitedHistory: (_, Uri? uri, __) {
+                    String url = uri.toString();
+                    print(uri);
+                    // uri containts newly loaded url
+                    if (mounted) {
+                      if (url.contains('https://www.google.com/')) {
+                        //Take the payment_id parameter of the url.
+                        String? paymentRequestId =
+                            uri?.queryParameters['payment_id'];
+                        print("value is: " + paymentRequestId.toString());
+                        //calling this method to check payment status
+                        _checkPaymentStatus(paymentRequestId.toString());
+                      }
+                    }
+                  },
+                ),
         ),
       ),
     );
