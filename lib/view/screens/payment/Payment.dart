@@ -44,9 +44,9 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
       "allow_repeated_payments": "true",
       "send_email": "true",
       "send_sms": "true",
-      "redirect_url": "https://www.google.com/",
+      // "redirect_url": "https://www.google.com/",
       //Where to redirect after a successful payment.
-      "webhook": "https://www.google.com/",
+      // "webhook": "https://www.google.com/",
     };
 //First we have to create a Payment_Request.
 //then we'll take the response of our request.
