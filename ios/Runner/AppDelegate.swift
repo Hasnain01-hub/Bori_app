@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 import Flutter
 import GoogleMaps
 @UIApplicationMain
@@ -7,6 +8,7 @@ import GoogleMaps
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    FirebaseApp.configure()
     GeneratedPluginRegistrant.register(with: self)
     
 

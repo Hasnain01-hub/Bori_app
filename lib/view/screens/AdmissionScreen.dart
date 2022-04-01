@@ -38,7 +38,7 @@ class AdmissionScreen extends StatefulWidget {
 class _AdmissionScreenState extends State<AdmissionScreen> {
   String dropdownValue = 'Mahabharata';
   String FeeValue = '2400';
-
+ final formKey = GlobalKey<FormState>();
   List<String> spinnerItems = [
     'Mahabharata',
   ];
@@ -89,6 +89,12 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
   @override
   Widget build(BuildContext context) {
     final _inputController = TextEditingController();
+    TextEditingController name = TextEditingController();
+    TextEditingController email = TextEditingController();
+    TextEditingController phone = TextEditingController();
+    TextEditingController address = TextEditingController();
+    TextEditingController age = TextEditingController();
+
     ApiResponse apiResponse = Provider.of<BookingViewModel>(context).response;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
         statusBarColor: Color.fromRGBO(100, 41, 8, 50),
@@ -143,345 +149,380 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
               },
             ),
           ]),
-      body: Container(
-        child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Flexible(
-                child: Container(
-                  // color: AppTheme.more_bg
-                  decoration: BoxDecoration(
-                    color: AppTheme.deco, //color: C
-                  ),
+      body: Form(
+        key: formKey,
+        child: Container(
+          child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Flexible(
                   child: Container(
-                    //   padding: const EdgeInsets.only(bottom: 10),
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.only(top: 10),
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
+                    // color: AppTheme.more_bg
                     decoration: BoxDecoration(
-                      color: AppTheme.more_bg,
-                      borderRadius: new BorderRadius.only(
-                        topLeft: const Radius.circular(40.0),
-                        topRight: const Radius.circular(40.0),
-                      ),
+                      color: AppTheme.deco, //color: C
                     ),
-                    child: SingleChildScrollView(
-                      child: new Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(top: 20, left: 20),
-                            child: Text(
-                              "Name*",
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: AppTheme.AppBarTheme,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 20, bottom: 20, right: 20, top: 10),
-                            height: 70,
-                            child: Theme(
-                              data: Theme.of(context)
-                                  .copyWith(splashColor: Colors.transparent),
-                              child: TextField(
-                                autofocus: false,
+                    child: Container(
+                      //   padding: const EdgeInsets.only(bottom: 10),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(top: 10),
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: AppTheme.more_bg,
+                        borderRadius: new BorderRadius.only(
+                          topLeft: const Radius.circular(40.0),
+                          topRight: const Radius.circular(40.0),
+                        ),
+                      ),
+                      child: SingleChildScrollView(
+                        child: new Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(top: 20, left: 20),
+                              child: Text(
+                                "Name*",
                                 style: TextStyle(
                                     fontSize: 14.0,
                                     color: AppTheme.AppBarTheme,
-                                    fontWeight: FontWeight.w400),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: AppTheme.search_bg,
-                                  hintText: 'Enter Name',
-                                  hintStyle:
-                                      TextStyle(color: AppTheme.AppBarTheme),
-                                  contentPadding: const EdgeInsets.only(
-                                      left: 14.0, bottom: 8.0, top: 8.0),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 20, right: 20, top: 10),
+                              height: 70,
+                              child: Theme(
+                                data: Theme.of(context)
+                                    .copyWith(splashColor: Colors.transparent),
+                                child: TextFormField(
+                                  validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Name is Required';
+                      }
+                      return null;
+                    },
+                                  controller: name,
+                                  autofocus: false,
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: AppTheme.AppBarTheme,
+                                      fontWeight: FontWeight.w400),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: AppTheme.search_bg,
+                                    hintText: 'Enter Name',
+                                    hintStyle:
+                                        TextStyle(color: AppTheme.AppBarTheme),
+                                    contentPadding: const EdgeInsets.only(
+                                        left: 14.0, bottom: 8.0, top: 8.0),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(top: 0, left: 20),
-                            child: Text(
-                              "Email*",
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: AppTheme.AppBarTheme,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 20, bottom: 20, right: 20, top: 10),
-                            height: 70,
-                            child: Theme(
-                              data: Theme.of(context)
-                                  .copyWith(splashColor: Colors.transparent),
-                              child: TextField(
-                                autofocus: false,
+                            Container(
+                              padding: const EdgeInsets.only(top: 0, left: 20),
+                              child: Text(
+                                "Email*",
                                 style: TextStyle(
                                     fontSize: 14.0,
                                     color: AppTheme.AppBarTheme,
-                                    fontWeight: FontWeight.w400),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: AppTheme.search_bg,
-                                  hintText: 'Enter Email',
-                                  hintStyle:
-                                      TextStyle(color: AppTheme.AppBarTheme),
-                                  contentPadding: const EdgeInsets.only(
-                                      left: 14.0, bottom: 8.0, top: 8.0),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 20, right: 20, top: 10),
+                              height: 70,
+                              child: Theme(
+                                data: Theme.of(context)
+                                    .copyWith(splashColor: Colors.transparent),
+                                child: TextFormField(
+                                  validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Email is Required';
+                      }
+                      return null;
+                    },
+                                  controller: email,
+                                  autofocus: false,
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: AppTheme.AppBarTheme,
+                                      fontWeight: FontWeight.w400),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: AppTheme.search_bg,
+                                    hintText: 'Enter Email',
+                                    hintStyle:
+                                        TextStyle(color: AppTheme.AppBarTheme),
+                                    contentPadding: const EdgeInsets.only(
+                                        left: 14.0, bottom: 8.0, top: 8.0),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(top: 0, left: 20),
-                            child: Text(
-                              "Contact Number*",
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: AppTheme.AppBarTheme,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 20, bottom: 20, right: 20, top: 10),
-                            height: 70,
-                            child: Theme(
-                              data: Theme.of(context)
-                                  .copyWith(splashColor: Colors.transparent),
-                              child: TextField(
-                                autofocus: false,
+                            Container(
+                              padding: const EdgeInsets.only(top: 0, left: 20),
+                              child: Text(
+                                "Contact Number*",
                                 style: TextStyle(
                                     fontSize: 14.0,
                                     color: AppTheme.AppBarTheme,
-                                    fontWeight: FontWeight.w400),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: AppTheme.search_bg,
-                                  hintText: 'Enter Contact Number',
-                                  hintStyle:
-                                      TextStyle(color: AppTheme.AppBarTheme),
-                                  contentPadding: const EdgeInsets.only(
-                                      left: 14.0, bottom: 8.0, top: 8.0),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 20, right: 20, top: 10),
+                              height: 70,
+                              child: Theme(
+                                data: Theme.of(context)
+                                    .copyWith(splashColor: Colors.transparent),
+                                child: TextFormField(
+                                  validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Phone is Required';
+                      }
+                      return null;
+                    },
+                                  controller: phone,
+                                  autofocus: false,
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: AppTheme.AppBarTheme,
+                                      fontWeight: FontWeight.w400),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: AppTheme.search_bg,
+                                    hintText: 'Enter Contact Number',
+                                    hintStyle:
+                                        TextStyle(color: AppTheme.AppBarTheme),
+                                    contentPadding: const EdgeInsets.only(
+                                        left: 14.0, bottom: 8.0, top: 8.0),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(top: 0, left: 20),
-                            child: Text(
-                              "Address*",
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: AppTheme.AppBarTheme,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 20, bottom: 20, right: 20, top: 10),
-                            height: 70,
-                            child: Theme(
-                              data: Theme.of(context)
-                                  .copyWith(splashColor: Colors.transparent),
-                              child: TextField(
-                                autofocus: false,
+                            Container(
+                              padding: const EdgeInsets.only(top: 0, left: 20),
+                              child: Text(
+                                "Address*",
                                 style: TextStyle(
                                     fontSize: 14.0,
                                     color: AppTheme.AppBarTheme,
-                                    fontWeight: FontWeight.w400),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: AppTheme.search_bg,
-                                  hintText: 'Enter Address',
-                                  hintStyle:
-                                      TextStyle(color: AppTheme.AppBarTheme),
-                                  contentPadding: const EdgeInsets.only(
-                                      left: 14.0, bottom: 8.0, top: 8.0),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 20, right: 20, top: 10),
+                              height: 70,
+                              child: Theme(
+                                data: Theme.of(context)
+                                    .copyWith(splashColor: Colors.transparent),
+                                child: TextField(
+                                  autofocus: false,
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: AppTheme.AppBarTheme,
+                                      fontWeight: FontWeight.w400),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: AppTheme.search_bg,
+                                    hintText: 'Enter Address',
+                                    hintStyle:
+                                        TextStyle(color: AppTheme.AppBarTheme),
+                                    contentPadding: const EdgeInsets.only(
+                                        left: 14.0, bottom: 8.0, top: 8.0),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(top: 0, left: 20),
-                            child: Text(
-                              "Age*",
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: AppTheme.AppBarTheme,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 20, bottom: 20, right: 20, top: 10),
-                            height: 70,
-                            child: Theme(
-                              data: Theme.of(context)
-                                  .copyWith(splashColor: Colors.transparent),
-                              child: TextField(
-                                autofocus: false,
+                            Container(
+                              padding: const EdgeInsets.only(top: 0, left: 20),
+                              child: Text(
+                                "Age*",
                                 style: TextStyle(
                                     fontSize: 14.0,
                                     color: AppTheme.AppBarTheme,
-                                    fontWeight: FontWeight.w400),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: AppTheme.search_bg,
-                                  hintText: 'Enter Age',
-                                  hintStyle:
-                                      TextStyle(color: AppTheme.AppBarTheme),
-                                  contentPadding: const EdgeInsets.only(
-                                      left: 14.0, bottom: 8.0, top: 8.0),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 20, right: 20, top: 10),
+                              height: 70,
+                              child: Theme(
+                                data: Theme.of(context)
+                                    .copyWith(splashColor: Colors.transparent),
+                                child: TextField(
+                                  controller: age,
+                                  autofocus: false,
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: AppTheme.AppBarTheme,
+                                      fontWeight: FontWeight.w400),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: AppTheme.search_bg,
+                                    hintText: 'Enter Age',
+                                    hintStyle:
+                                        TextStyle(color: AppTheme.AppBarTheme),
+                                    contentPadding: const EdgeInsets.only(
+                                        left: 14.0, bottom: 8.0, top: 8.0),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(top: 0, left: 20),
-                            child: Text(
-                              "Course*",
-                              style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: AppTheme.AppBarTheme,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 20, bottom: 20, right: 20, top: 10),
-                            height: 70,
-                            child: Theme(
-                              data: Theme.of(context)
-                                  .copyWith(splashColor: Colors.transparent),
-                              child: DropdownButtonFormField<String>(
+                            Container(
+                              padding: const EdgeInsets.only(top: 0, left: 20),
+                              child: Text(
+                                "Course*",
                                 style: TextStyle(
-                                    fontSize: 14.0,
+                                    fontSize: 16.0,
                                     color: AppTheme.AppBarTheme,
-                                    fontWeight: FontWeight.w400),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: AppTheme.search_bg,
-                                  contentPadding: const EdgeInsets.only(
-                                      left: 14.0,
-                                      bottom: 8.0,
-                                      top: 8.0,
-                                      right: 20),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(23.0),
-                                      borderSide:
-                                          BorderSide(color: AppTheme.more_bg)),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, bottom: 20, right: 20, top: 10),
+                              height: 70,
+                              child: Theme(
+                                data: Theme.of(context)
+                                    .copyWith(splashColor: Colors.transparent),
+                                child: DropdownButtonFormField<String>(
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: AppTheme.AppBarTheme,
+                                      fontWeight: FontWeight.w400),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: AppTheme.search_bg,
+                                    contentPadding: const EdgeInsets.only(
+                                        left: 14.0,
+                                        bottom: 8.0,
+                                        top: 8.0,
+                                        right: 20),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(23.0),
+                                        borderSide:
+                                            BorderSide(color: AppTheme.more_bg)),
+                                  ),
+                                  onChanged: (var _data) {
+                                    setState(() {
+                                      dropdownValue = _data!;
+                                    });
+                                  },
+                                  hint: Text('Select'),
+                                  dropdownColor: AppTheme.more_bg,
+                                  icon: SvgPicture.asset(
+                                    "assets/images/spinner_down.svg",
+                                    allowDrawingOutsideViewBox: false,
+                                    width: 10,
+                                    height: 10,
+                                  ),
+                                  items: spinnerItems
+                                      .map<DropdownMenuItem<String>>(
+                                          (String _value) {
+                                    return DropdownMenuItem<String>(
+                                      value: _value,
+                                      child: Text(_value),
+                                    );
+                                  }).toList(),
                                 ),
-                                onChanged: (var _data) {
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 20),
+                              child: Text(
+                                  dropdownValue + ' Course Fee  -  ₹' + FeeValue,
+                                  style: TextStyle(
+                                      fontSize: 16, color: AppTheme.AppBarTheme)),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                if (formKey.currentState!.validate()) {
                                   setState(() {
-                                    dropdownValue = _data!;
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => InstaMojoDemo(
+                                                fees: FeeValue,
+                                                name: name.text,
+                                                email: email.text,
+                                                phone: phone.text,
+                                                address: address.text,
+                                                age: age.text,
+                                                course: dropdownValue)));
                                   });
-                                },
-                                hint: Text('Select'),
-                                dropdownColor: AppTheme.more_bg,
-                                icon: SvgPicture.asset(
-                                  "assets/images/spinner_down.svg",
-                                  allowDrawingOutsideViewBox: false,
-                                  width: 10,
-                                  height: 10,
+                                }
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(30),
+                                child: SvgPicture.asset(
+                                  "assets/images/proceed_btn.svg",
+                                  width: 122,
+                                  height: 35,
                                 ),
-                                items: spinnerItems
-                                    .map<DropdownMenuItem<String>>(
-                                        (String _value) {
-                                  return DropdownMenuItem<String>(
-                                    value: _value,
-                                    child: Text(_value),
-                                  );
-                                }).toList(),
+                                alignment: Alignment.center,
                               ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 20),
-                            child: Text(
-                                dropdownValue + ' Course Fee  -  ₹' + FeeValue,
-                                style: TextStyle(
-                                    fontSize: 16, color: AppTheme.AppBarTheme)),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          InstaMojoDemo(fees:FeeValue)));
-                            },
-                            child: Container(
-                              margin: EdgeInsets.all(30),
-                              child: SvgPicture.asset(
-                                "assets/images/proceed_btn.svg",
-                                width: 122,
-                                height: 35,
-                              ),
-                              alignment: Alignment.center,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ]),
+              ]),
+        ),
       ),
     );
   }

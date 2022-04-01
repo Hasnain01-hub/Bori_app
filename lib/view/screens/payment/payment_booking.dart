@@ -1,5 +1,4 @@
 // ignore_for_file: file_names, annotate_overrides, prefer_const_constructors, override_on_non_overriding_member, avoid_print, unused_field, avoid_unnecessary_containers, prefer_typing_uninitialized_variables
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/material.dart';
@@ -9,25 +8,26 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
-class InstaMojoDemo extends StatefulWidget {
+class Payment_booking extends StatefulWidget {
   final fees;
   
   final name;
   final email;
   final phone;
   final address;
-  final age;
-  final course;
+  final date;
+  final fromtime;
+  final totime;
 
-  const InstaMojoDemo({Key? key, this.fees,this.address,this.age,this.course,this.email,this.name,this.phone}) : super(key: key);
+  const Payment_booking({Key? key, this.fees,this.address,this.date,this.fromtime,this.totime,this.email,this.name,this.phone}) : super(key: key);
 
   @override
-  _InstaMojoDemoState createState() => _InstaMojoDemoState();
+  _Payment_bookingState createState() => _Payment_bookingState();
 }
 
 bool isLoading = true; //this can be declared outside the class
 
-class _InstaMojoDemoState extends State<InstaMojoDemo> {
+class _Payment_bookingState extends State<Payment_booking> {
   double progress = 0;
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
@@ -45,10 +45,10 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
   Future createRequest() async {
     Map<String, String> body = {
       "amount": widget.fees, //amount to be paid
-      "purpose": "Addmission",
+      "purpose": "Booking",
       "buyer_name": widget.name ??'dummy',
       "email": widget.email ??'dummy@gmail.com',
-      "phone": widget.phone ??'8665643435',
+      "phone": widget.phone ??'7878787878',
       "allow_repeated_payments": "true",
       "send_email": "true",
       "send_sms": "true",
@@ -149,17 +149,17 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
         var uuid = Uuid();
         var rand=uuid.v1();
         FirebaseFirestore.instance
-              .collection("Addmission")
+              .collection("Booking")
     .doc(rand)
         .set({
     "Name": widget.name,
     "Phone": widget.phone,       
      "email":widget.email,
-    "age":widget.age,
+    "date":widget.date,
     "Address": widget.address,
-    "Course":widget.course,
+    "time":widget.fromtime+"-"+widget.totime,
     "fees":widget.fees,
-    }).then((value) => print("Addmission Document Added"))
+    }).then((value) => print("Booking Document Added"))
         .catchError((error) => print(
     "Failed to add user: $error"));
     
