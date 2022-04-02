@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:io';
-
 import 'package:bori_app/themes/AppColors.dart';
 import 'package:bori_app/view/screens/SplashScreen.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
@@ -10,16 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-if (Platform.isIOS) {
+  if (Platform.isIOS) {
     await Firebase.initializeApp(
         options: FirebaseOptions(
-            apiKey: "AIzaSyA0ZoajGdNrKiUfG7XBgbOIhoCeA7EWym4",
-            appId: "1:735698014794:ios:8e906f8172a55533ebccb3",
-            messagingSenderId: "Your Sender id found in Firebase",
-            projectId: "bori-app",
-            ));
+      apiKey: "AIzaSyA0ZoajGdNrKiUfG7XBgbOIhoCeA7EWym4",
+      appId: "1:735698014794:ios:8e906f8172a55533ebccb3",
+      messagingSenderId: "Your Sender id found in Firebase",
+      projectId: "bori-app",
+    ));
   } else {
     await Firebase.initializeApp();
   }

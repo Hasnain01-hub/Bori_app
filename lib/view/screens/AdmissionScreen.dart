@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new, file_names, prefer_const_constructors
+
 import 'package:bori_app/model/BookingModel.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
@@ -38,7 +40,7 @@ class AdmissionScreen extends StatefulWidget {
 class _AdmissionScreenState extends State<AdmissionScreen> {
   String dropdownValue = 'Mahabharata';
   String FeeValue = '2400';
- final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   List<String> spinnerItems = [
     'Mahabharata',
   ];
@@ -199,11 +201,11 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     .copyWith(splashColor: Colors.transparent),
                                 child: TextFormField(
                                   validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Name is Required';
-                      }
-                      return null;
-                    },
+                                    if (value!.isEmpty) {
+                                      return 'Name is Required';
+                                    }
+                                    return null;
+                                  },
                                   controller: name,
                                   autofocus: false,
                                   style: TextStyle(
@@ -219,13 +221,15 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     contentPadding: const EdgeInsets.only(
                                         left: 14.0, bottom: 8.0, top: 8.0),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                   ),
                                 ),
                               ),
@@ -249,11 +253,11 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     .copyWith(splashColor: Colors.transparent),
                                 child: TextFormField(
                                   validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Email is Required';
-                      }
-                      return null;
-                    },
+                                    if (value!.isEmpty) {
+                                      return 'Email is Required';
+                                    }
+                                    return null;
+                                  },
                                   controller: email,
                                   autofocus: false,
                                   style: TextStyle(
@@ -269,13 +273,15 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     contentPadding: const EdgeInsets.only(
                                         left: 14.0, bottom: 8.0, top: 8.0),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                   ),
                                 ),
                               ),
@@ -299,11 +305,11 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     .copyWith(splashColor: Colors.transparent),
                                 child: TextFormField(
                                   validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Phone is Required';
-                      }
-                      return null;
-                    },
+                                    if (value!.isEmpty) {
+                                      return 'Phone is Required';
+                                    }
+                                    return null;
+                                  },
                                   controller: phone,
                                   autofocus: false,
                                   style: TextStyle(
@@ -319,13 +325,15 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     contentPadding: const EdgeInsets.only(
                                         left: 14.0, bottom: 8.0, top: 8.0),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                   ),
                                 ),
                               ),
@@ -362,13 +370,15 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     contentPadding: const EdgeInsets.only(
                                         left: 14.0, bottom: 8.0, top: 8.0),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                   ),
                                 ),
                               ),
@@ -406,13 +416,15 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     contentPadding: const EdgeInsets.only(
                                         left: 14.0, bottom: 8.0, top: 8.0),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                   ),
                                 ),
                               ),
@@ -448,13 +460,15 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                         top: 8.0,
                                         right: 20),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(23.0),
-                                        borderSide:
-                                            BorderSide(color: AppTheme.more_bg)),
+                                        borderRadius:
+                                            BorderRadius.circular(23.0),
+                                        borderSide: BorderSide(
+                                            color: AppTheme.more_bg)),
                                   ),
                                   onChanged: (var _data) {
                                     setState(() {
@@ -483,9 +497,12 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                             Container(
                               margin: EdgeInsets.only(left: 20),
                               child: Text(
-                                  dropdownValue + ' Course Fee  -  ₹' + FeeValue,
+                                  dropdownValue +
+                                      ' Course Fee  -  ₹' +
+                                      FeeValue,
                                   style: TextStyle(
-                                      fontSize: 16, color: AppTheme.AppBarTheme)),
+                                      fontSize: 16,
+                                      color: AppTheme.AppBarTheme)),
                             ),
                             InkWell(
                               onTap: () {

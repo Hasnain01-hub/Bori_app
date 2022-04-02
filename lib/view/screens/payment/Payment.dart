@@ -85,6 +85,7 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
         selectedUrl =
             json.decode(resp.body)["payment_request"]['longurl'].toString() +
                 "?embed=form";
+        print("SElected URL");
         print(selectedUrl);
       });
       // print(json.decode(resp.body)['message'].toString());
@@ -123,13 +124,14 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
                   },
                   onUpdateVisitedHistory: (_, Uri? uri, __) {
                     String url = uri.toString();
+                    print("ANder wakai"+url);
                     print(uri);
                     // uri containts newly loaded url
                     if (mounted) {
-                      if (url.contains('https://www.google.com/')) {
+                      if (url.contains('https://test.instamojo.com/')) {
 //Take the payment_id parameter of the url.
                         String? paymentRequestId =
-                            uri?.queryParameters['payment_id'];
+                            uri?.queryParameters['payment_request_id'];
                         print("value is: " + paymentRequestId.toString());
                         //calling this method to check payment status
                         _checkPaymentStatus(paymentRequestId.toString());
@@ -156,14 +158,13 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
     print("response is: " + realResponse.toString());
     print(realResponse);
     print(realResponse['success']);
-    print('sucesssssssssssful');
     if (realResponse['success'] == true) {
       print('sucesssssssssssful');
       if (realResponse["payment"]['status'] == 'Credit') {
         var uuid = Uuid();
         var rand = uuid.v1();
         FirebaseFirestore.instance
-            .collection("Addmission")
+            .collection("Admission")
             .doc(rand)
             .set({
               "Name": widget.name,
