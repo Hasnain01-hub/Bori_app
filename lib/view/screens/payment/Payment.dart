@@ -11,7 +11,7 @@ import 'dart:async';
 
 class InstaMojoDemo extends StatefulWidget {
   final fees;
-  
+
   final name;
   final email;
   final phone;
@@ -19,7 +19,16 @@ class InstaMojoDemo extends StatefulWidget {
   final age;
   final course;
 
-  const InstaMojoDemo({Key? key, this.fees,this.address,this.age,this.course,this.email,this.name,this.phone}) : super(key: key);
+  const InstaMojoDemo(
+      {Key? key,
+      this.fees,
+      this.address,
+      this.age,
+      this.course,
+      this.email,
+      this.name,
+      this.phone})
+      : super(key: key);
 
   @override
   _InstaMojoDemoState createState() => _InstaMojoDemoState();
@@ -33,6 +42,7 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
       Completer<WebViewController>();
   @override
   String? selectedUrl;
+  String? url;
   void initState() {
     createRequest();
 
@@ -46,13 +56,13 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
     Map<String, String> body = {
       "amount": widget.fees, //amount to be paid
       "purpose": "Addmission",
-      "buyer_name": widget.name ??'dummy',
-      "email": widget.email ??'dummy@gmail.com',
-      "phone": widget.phone ??'8665643435',
+      "buyer_name": widget.name ?? 'dummy',
+      "email": widget.email ?? 'dummy@gmail.com',
+      "phone": widget.phone ?? '8665643435',
       "allow_repeated_payments": "true",
       "send_email": "true",
       "send_sms": "true",
-      // "redirect_url": "https://www.google.com/",
+      // "redirect_url": url ?? 'https://www.google.com/',
       //Where to redirect after a successful payment.
       // "webhook": "https://www.google.com/",
     };
@@ -117,7 +127,7 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
                     // uri containts newly loaded url
                     if (mounted) {
                       if (url.contains('https://www.google.com/')) {
-                        //Take the payment_id parameter of the url.
+//Take the payment_id parameter of the url.
                         String? paymentRequestId =
                             uri?.queryParameters['payment_id'];
                         print("value is: " + paymentRequestId.toString());
@@ -142,27 +152,32 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
           "X-Auth-Token": "test_dbd4f9391fd3909c0736a61506d"
         });
     var realResponse = json.decode(response.body);
+    print("********************%%%%%%%%%%%%%%");
+    print("response is: " + realResponse.toString());
     print(realResponse);
+    print(realResponse['success']);
+    print('sucesssssssssssful');
     if (realResponse['success'] == true) {
+      print('sucesssssssssssful');
       if (realResponse["payment"]['status'] == 'Credit') {
-        print('sucesssssssssssful');
         var uuid = Uuid();
-        var rand=uuid.v1();
+        var rand = uuid.v1();
         FirebaseFirestore.instance
-              .collection("Addmission")
-    .doc(rand)
-        .set({
-    "Name": widget.name,
-    "Phone": widget.phone,       
-     "email":widget.email,
-    "age":widget.age,
-    "Address": widget.address,
-    "Course":widget.course,
-    "fees":widget.fees,
-    }).then((value) => print("Addmission Document Added"))
-        .catchError((error) => print(
-    "Failed to add user: $error"));
-    
+            .collection("Addmission")
+            .doc(rand)
+            .set({
+              "Name": widget.name,
+              "Phone": widget.phone,
+              "email": widget.email,
+              "payment": realResponse,
+              "age": widget.age,
+              "Address": widget.address,
+              "Course": widget.course,
+              "fees": widget.fees,
+            })
+            .then((value) => print("Addmission Document Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+
 //payment is successful.
       } else {
         print('failed');
