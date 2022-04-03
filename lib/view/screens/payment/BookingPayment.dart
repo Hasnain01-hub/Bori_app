@@ -1,63 +1,49 @@
-// ignore_for_file: file_names, annotate_overrides, prefer_const_constructors, override_on_non_overriding_member, avoid_print, unused_field, avoid_unnecessary_containers, prefer_typing_uninitialized_variables
-
+// ignore_for_file: file_names, annotate_overrides, prefer_const_constructors, override_on_non_overriding_member, avoid_print, unused_field, avoid_unnecessary_containers, prefer_typing_uninitialized_variables, camel_case_types
+import 'package:bori_app/themes/AppColors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 import 'dart:convert';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
-class InstaMojoDemo extends StatefulWidget {
+class BookingPayment extends StatefulWidget {
   final fees;
-
   final name;
   final email;
   final phone;
   final address;
-  final age;
-  final course;
+  final date;
+  final fromtime;
+  final totime;
 
-  const InstaMojoDemo(
+  const BookingPayment(
       {Key? key,
       this.fees,
       this.address,
-      this.age,
-      this.course,
+      this.date,
+      this.fromtime,
+      this.totime,
       this.email,
       this.name,
       this.phone})
       : super(key: key);
 
   @override
-  _InstaMojoDemoState createState() => _InstaMojoDemoState();
+  _BookingPaymentState createState() => _BookingPaymentState();
 }
 
 bool isLoading = true; //this can be declared outside the class
 
-class _InstaMojoDemoState extends State<InstaMojoDemo> {
+class _BookingPaymentState extends State<BookingPayment> {
   double progress = 0;
-  @override
-  String? selectedUrl;
-  String? url;
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
   String? paymentRequestID;
   bool successStatus = false;
-
-  final GlobalKey webViewKey = GlobalKey();
-
-  InAppWebViewController? webViewController;
-  InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
-      crossPlatform: InAppWebViewOptions(
-        useShouldOverrideUrlLoading: true,
-        mediaPlaybackRequiresUserGesture: false,
-      ),
-      android: AndroidInAppWebViewOptions(
-        useHybridComposition: true,
-      ),
-      ios: IOSInAppWebViewOptions(
-        allowsInlineMediaPlayback: true,
-      ));
-
+  @override
+  String? selectedUrl;
   void initState() {
     createRequest();
 
@@ -70,19 +56,19 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
   Future createRequest() async {
     Map<String, String> body = {
       "amount": widget.fees, //amount to be paid
-      "purpose": "Admission",
+      "purpose": "Booking",
       "buyer_name": widget.name ?? 'dummy',
       "email": widget.email ?? 'dummy@gmail.com',
-      "phone": widget.phone ?? '8665643435',
+      "phone": widget.phone ?? '7878787878',
       "allow_repeated_payments": "true",
       "send_email": "true",
       "send_sms": "true",
-      // "redirect_url": url ?? 'https://www.google.com/',
+      // "redirect_url": "https://www.google.com/",
       //Where to redirect after a successful payment.
       // "webhook": "https://www.google.com/",
     };
-    //First we have to create a Payment_Request.
-    //then we'll take the response of our request.
+//First we have to create a Payment_Request.
+//then we'll take the response of our request.
     var resp = await http.post(
         Uri.parse("https://test.instamojo.com/api/1.1/payment-requests/"),
         headers: {
@@ -114,7 +100,8 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        elevation: 0,
+        backgroundColor: AppTheme.AppBarTheme,
         title: Text("Pay"),
       ),
       body: Container(
@@ -123,8 +110,6 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
               ? //check loadind status
               CircularProgressIndicator()
               : InAppWebView(
-                  key: webViewKey,
-                  initialOptions: options,
                   initialUrlRequest: URLRequest(
                     url: Uri.tryParse(selectedUrl!),
                   ),
@@ -142,13 +127,14 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
                   },
                   onUpdateVisitedHistory: (_, Uri? uri, __) {
                     String url = uri.toString();
-                    print("ANder wakai" + url);
                     print(uri);
                     // uri containts newly loaded url
                     if (mounted) {
-                      if (url.contains('https://test.instamojo.com/order/status')) {
+                      if (url.contains(
+                          'https://test.instamojo.com/order/status')) {
                         //Take the payment_id parameter of the url.
-                        String? paymentRequestId = uri?.pathSegments[2];
+                        String? paymentRequestId =
+                            uri?.queryParameters['payment_id'];
                         print("value is: " + paymentRequestId.toString());
                         //calling this method to check payment status
                         _checkPaymentStatus(paymentRequestID!);
@@ -175,20 +161,21 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
     print("response is: " + realResponse.toString());
     if (realResponse['success'] == true) {
       print('sucesssssssssssful');
-      if (realResponse["payment_request"]['payments'][0]['status'] == "Credit") {
+      if (realResponse["payment_request"]['payments'][0]['status'] ==
+          "Credit") {
         FirebaseFirestore.instance
-            .collection("Admission")
+            .collection("Booking")
             .add({
               "Name": widget.name,
               "Phone": widget.phone,
               "email": widget.email,
+              "date": widget.date,
               "payment": realResponse,
-              "age": widget.age,
               "Address": widget.address,
-              "Course": widget.course,
+              "time": widget.fromtime + "-" + widget.totime,
               "fees": widget.fees,
             })
-            .then((value) => print("Addmission Document Added"))
+            .then((value) => print("Booking Document Added"))
             .catchError((error) => print("Failed to add user: $error"));
 
 //payment is successful.

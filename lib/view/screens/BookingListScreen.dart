@@ -258,12 +258,14 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                   "Seating Capacity - 200",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
-                                    letterSpacing: 0.8,
+                                      letterSpacing: 0.8,
                                       color: AppTheme.AppBarTheme,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                SizedBox(height: 1.6,),
+                                SizedBox(
+                                  height: 1.6,
+                                ),
                                 Text(
                                   "Features - Integrated Sound System",
                                   textAlign: TextAlign.start,
@@ -272,8 +274,10 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                                      SizedBox(height: 1.6,),
-                                                                Text(
+                                SizedBox(
+                                  height: 1.6,
+                                ),
+                                Text(
                                   "Projector, Generator Backup",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -281,7 +285,9 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                SizedBox(height: 1.6,),
+                                SizedBox(
+                                  height: 1.6,
+                                ),
                                 Text(
                                   "Availability - Monday to Saturday",
                                   textAlign: TextAlign.start,
@@ -290,7 +296,9 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                SizedBox(height: 1.6,),
+                                SizedBox(
+                                  height: 1.6,
+                                ),
                                 Text(
                                   "Rent - 10,000",
                                   textAlign: TextAlign.start,
@@ -301,10 +309,21 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(top: 20),
-                                  child: SvgPicture.asset(
-                                    "assets/images/book_btn.svg",
-                                    width: 122,
-                                    height: 35,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              BookingDetailsScreen(),
+                                        ),
+                                      );
+                                    },
+                                    child: SvgPicture.asset(
+                                      "assets/images/book_btn.svg",
+                                      width: 122,
+                                      height: 35,
+                                    ),
                                   ),
                                   alignment: Alignment.center,
                                 ),

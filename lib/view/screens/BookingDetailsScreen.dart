@@ -1,9 +1,9 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unnecessary_new, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unused_element, use_key_in_widget_constructors, avoid_unnecessary_containers, avoid_print, unused_local_variable
 
 import 'package:bori_app/model/BookingModel.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
-import 'package:bori_app/view/screens/payment/payment_booking.dart';
+import 'package:bori_app/view/screens/payment/BookingPayment.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -96,7 +96,6 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _inputController = TextEditingController();
     TextEditingController name = TextEditingController();
     TextEditingController address = TextEditingController();
     TextEditingController number = TextEditingController();
@@ -107,9 +106,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
 
     TextEditingController frmhrs = TextEditingController();
     TextEditingController frmmin = TextEditingController();
-
     TextEditingController tohrs = TextEditingController();
-
     TextEditingController tomin = TextEditingController();
 
     ApiResponse apiResponse = Provider.of<BookingViewModel>(context).response;
@@ -736,7 +733,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                Payment_booking(
+                                                BookingPayment(
                                                   name: name.text,
                                                   email: email.text,
                                                   address: address.text,

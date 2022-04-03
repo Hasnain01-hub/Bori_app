@@ -1,50 +1,62 @@
 // ignore_for_file: file_names, annotate_overrides, prefer_const_constructors, override_on_non_overriding_member, avoid_print, unused_field, avoid_unnecessary_containers, prefer_typing_uninitialized_variables
+
+import 'package:bori_app/themes/AppColors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 import 'dart:convert';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
-class Payment_booking extends StatefulWidget {
+class AdmissionPayment extends StatefulWidget {
   final fees;
-
   final name;
   final email;
   final phone;
   final address;
-  final date;
-  final fromtime;
-  final totime;
+  final age;
+  final course;
 
-  const Payment_booking(
+  const AdmissionPayment(
       {Key? key,
       this.fees,
       this.address,
-      this.date,
-      this.fromtime,
-      this.totime,
+      this.age,
+      this.course,
       this.email,
       this.name,
       this.phone})
       : super(key: key);
 
   @override
-  _Payment_bookingState createState() => _Payment_bookingState();
+  _AdmissionPaymentState createState() => _AdmissionPaymentState();
 }
 
 bool isLoading = true; //this can be declared outside the class
 
-class _Payment_bookingState extends State<Payment_booking> {
+class _AdmissionPaymentState extends State<AdmissionPayment> {
   double progress = 0;
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
-  String? paymentRequestID;
-  bool successStatus = false;
   @override
   String? selectedUrl;
+  String? url;
+  String? paymentRequestID;
+  bool successStatus = false;
+
+  final GlobalKey webViewKey = GlobalKey();
+
+  InAppWebViewController? webViewController;
+  InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
+      crossPlatform: InAppWebViewOptions(
+        useShouldOverrideUrlLoading: true,
+        mediaPlaybackRequiresUserGesture: false,
+      ),
+      android: AndroidInAppWebViewOptions(
+        useHybridComposition: true,
+      ),
+      ios: IOSInAppWebViewOptions(
+        allowsInlineMediaPlayback: true,
+      ));
+
   void initState() {
     createRequest();
 
@@ -57,19 +69,19 @@ class _Payment_bookingState extends State<Payment_booking> {
   Future createRequest() async {
     Map<String, String> body = {
       "amount": widget.fees, //amount to be paid
-      "purpose": "Booking",
+      "purpose": "Admission",
       "buyer_name": widget.name ?? 'dummy',
       "email": widget.email ?? 'dummy@gmail.com',
-      "phone": widget.phone ?? '7878787878',
+      "phone": widget.phone ?? '8665643435',
       "allow_repeated_payments": "true",
       "send_email": "true",
       "send_sms": "true",
-      // "redirect_url": "https://www.google.com/",
+      // "redirect_url": url ?? 'https://www.google.com/',
       //Where to redirect after a successful payment.
       // "webhook": "https://www.google.com/",
     };
-//First we have to create a Payment_Request.
-//then we'll take the response of our request.
+    //First we have to create a Payment_Request.
+    //then we'll take the response of our request.
     var resp = await http.post(
         Uri.parse("https://test.instamojo.com/api/1.1/payment-requests/"),
         headers: {
@@ -101,7 +113,8 @@ class _Payment_bookingState extends State<Payment_booking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: AppTheme.AppBarTheme,
+        elevation: 0,
         title: Text("Pay"),
       ),
       body: Container(
@@ -110,6 +123,8 @@ class _Payment_bookingState extends State<Payment_booking> {
               ? //check loadind status
               CircularProgressIndicator()
               : InAppWebView(
+                  key: webViewKey,
+                  initialOptions: options,
                   initialUrlRequest: URLRequest(
                     url: Uri.tryParse(selectedUrl!),
                   ),
@@ -127,14 +142,13 @@ class _Payment_bookingState extends State<Payment_booking> {
                   },
                   onUpdateVisitedHistory: (_, Uri? uri, __) {
                     String url = uri.toString();
+                    print("ANder wakai" + url);
                     print(uri);
                     // uri containts newly loaded url
                     if (mounted) {
-                      if (url.contains(
-                          'https://test.instamojo.com/order/status')) {
+                      if (url.contains('https://test.instamojo.com/order/status')) {
                         //Take the payment_id parameter of the url.
-                        String? paymentRequestId =
-                            uri?.queryParameters['payment_id'];
+                        String? paymentRequestId = uri?.pathSegments[2];
                         print("value is: " + paymentRequestId.toString());
                         //calling this method to check payment status
                         _checkPaymentStatus(paymentRequestID!);
@@ -161,21 +175,20 @@ class _Payment_bookingState extends State<Payment_booking> {
     print("response is: " + realResponse.toString());
     if (realResponse['success'] == true) {
       print('sucesssssssssssful');
-      if (realResponse["payment_request"]['payments'][0]['status'] ==
-          "Credit") {
+      if (realResponse["payment_request"]['payments'][0]['status'] == "Credit") {
         FirebaseFirestore.instance
-            .collection("Booking")
+            .collection("Admission")
             .add({
               "Name": widget.name,
               "Phone": widget.phone,
               "email": widget.email,
-              "date": widget.date,
               "payment": realResponse,
+              "age": widget.age,
               "Address": widget.address,
-              "time": widget.fromtime + "-" + widget.totime,
+              "Course": widget.course,
               "fees": widget.fees,
             })
-            .then((value) => print("Booking Document Added"))
+            .then((value) => print("Addmission Document Added"))
             .catchError((error) => print("Failed to add user: $error"));
 
 //payment is successful.

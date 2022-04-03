@@ -1,9 +1,9 @@
-// ignore_for_file: unnecessary_new, file_names, prefer_const_constructors
+// ignore_for_file: unnecessary_new, file_names, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, non_constant_identifier_names, unused_local_variable, unused_element
 
 import 'package:bori_app/model/BookingModel.dart';
 import 'package:bori_app/model/apis/ApiResponse.dart';
 import 'package:bori_app/themes/AppColors.dart';
-import 'package:bori_app/view/screens/payment/Payment.dart';
+import 'package:bori_app/view/screens/payment/AdmissionPayment.dart';
 import 'package:bori_app/viewModel/BookingViewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +41,9 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
   String dropdownValue = 'Mahabharata';
   String FeeValue = '2400';
   final formKey = GlobalKey<FormState>();
-  List<String> spinnerItems = [
-    'Mahabharata',
-  ];
+  // List<String> spinnerItems = [
+  //   'Mahabharata',
+  // ];
   List<String> valueItems = [
     '2400',
   ];
@@ -90,12 +90,12 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _inputController = TextEditingController();
     TextEditingController name = TextEditingController();
     TextEditingController email = TextEditingController();
     TextEditingController phone = TextEditingController();
     TextEditingController address = TextEditingController();
     TextEditingController age = TextEditingController();
+    String? _chosenValue;
 
     ApiResponse apiResponse = Provider.of<BookingViewModel>(context).response;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
@@ -194,7 +194,11 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                             ),
                             Container(
                               padding: const EdgeInsets.only(
-                                  left: 20, bottom: 20, right: 20, top: 10),
+                                left: 20,
+                                bottom: 20,
+                                right: 20,
+                                top: 10,
+                              ),
                               height: 70,
                               child: Theme(
                                 data: Theme.of(context)
@@ -208,6 +212,7 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                   },
                                   controller: name,
                                   autofocus: false,
+                                  keyboardType: TextInputType.name,
                                   style: TextStyle(
                                       fontSize: 14.0,
                                       color: AppTheme.AppBarTheme,
@@ -219,17 +224,22 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     hintStyle:
                                         TextStyle(color: AppTheme.AppBarTheme),
                                     contentPadding: const EdgeInsets.only(
-                                        left: 14.0, bottom: 8.0, top: 8.0),
+                                      left: 14.0,
+                                      bottom: 8.0,
+                                      top: 8.0,
+                                    ),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(23.0),
-                                        borderSide: BorderSide(
-                                            color: AppTheme.more_bg)),
+                                      borderRadius: BorderRadius.circular(23.0),
+                                      borderSide: BorderSide(
+                                        color: AppTheme.more_bg,
+                                      ),
+                                    ),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(23.0),
-                                        borderSide: BorderSide(
-                                            color: AppTheme.more_bg)),
+                                      borderRadius: BorderRadius.circular(23.0),
+                                      borderSide: BorderSide(
+                                        color: AppTheme.more_bg,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -252,6 +262,7 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                 data: Theme.of(context)
                                     .copyWith(splashColor: Colors.transparent),
                                 child: TextFormField(
+                                  keyboardType: TextInputType.emailAddress,
                                   validator: (String? value) {
                                     if (value!.isEmpty) {
                                       return 'Email is Required';
@@ -304,6 +315,7 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                 data: Theme.of(context)
                                     .copyWith(splashColor: Colors.transparent),
                                 child: TextFormField(
+                                  keyboardType: TextInputType.number,
                                   validator: (String? value) {
                                     if (value!.isEmpty) {
                                       return 'Phone is Required';
@@ -313,9 +325,10 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                   controller: phone,
                                   autofocus: false,
                                   style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: AppTheme.AppBarTheme,
-                                      fontWeight: FontWeight.w400),
+                                    fontSize: 14.0,
+                                    color: AppTheme.AppBarTheme,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                   decoration: InputDecoration(
                                     filled: true,
                                     fillColor: AppTheme.search_bg,
@@ -325,15 +338,17 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     contentPadding: const EdgeInsets.only(
                                         left: 14.0, bottom: 8.0, top: 8.0),
                                     enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(23.0),
-                                        borderSide: BorderSide(
-                                            color: AppTheme.more_bg)),
+                                      borderRadius: BorderRadius.circular(23.0),
+                                      borderSide: BorderSide(
+                                        color: AppTheme.more_bg,
+                                      ),
+                                    ),
                                     focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(23.0),
-                                        borderSide: BorderSide(
-                                            color: AppTheme.more_bg)),
+                                      borderRadius: BorderRadius.circular(23.0),
+                                      borderSide: BorderSide(
+                                        color: AppTheme.more_bg,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -402,6 +417,7 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                 data: Theme.of(context)
                                     .copyWith(splashColor: Colors.transparent),
                                 child: TextField(
+                                  keyboardType: TextInputType.number,
                                   controller: age,
                                   autofocus: false,
                                   style: TextStyle(
@@ -447,79 +463,96 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                               child: Theme(
                                 data: Theme.of(context)
                                     .copyWith(splashColor: Colors.transparent),
-                                child: DropdownButtonFormField<String>(
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: AppTheme.AppBarTheme,
-                                      fontWeight: FontWeight.w400),
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: AppTheme.search_bg,
-                                    contentPadding: const EdgeInsets.only(
-                                        left: 14.0,
-                                        bottom: 8.0,
-                                        top: 8.0,
-                                        right: 20),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(23.0),
-                                        borderSide: BorderSide(
-                                            color: AppTheme.more_bg)),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(23.0),
-                                        borderSide: BorderSide(
-                                            color: AppTheme.more_bg)),
-                                  ),
-                                  onChanged: (var _data) {
-                                    setState(() {
-                                      dropdownValue = _data!;
-                                    });
-                                  },
-                                  hint: Text('Select'),
-                                  dropdownColor: AppTheme.more_bg,
-                                  icon: SvgPicture.asset(
-                                    "assets/images/spinner_down.svg",
-                                    allowDrawingOutsideViewBox: false,
-                                    width: 10,
-                                    height: 10,
-                                  ),
-                                  items: spinnerItems
-                                      .map<DropdownMenuItem<String>>(
-                                          (String _value) {
-                                    return DropdownMenuItem<String>(
-                                      value: _value,
-                                      child: Text(_value),
+                                child: StatefulBuilder(
+                                  builder: (context, ss) {
+                                    return DropdownButtonFormField(
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: AppTheme.search_bg,
+                                        contentPadding: const EdgeInsets.only(
+                                          left: 14.0,
+                                          bottom: 8.0,
+                                          top: 8.0,
+                                          right: 20,
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(23.0),
+                                          borderSide: BorderSide(
+                                            color: AppTheme.more_bg,
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(23.0),
+                                          borderSide: BorderSide(
+                                            color: AppTheme.more_bg,
+                                          ),
+                                        ),
+                                      ),
+                                      validator: (value) => value == null
+                                          ? "Select a Category"
+                                          : _chosenValue,
+                                      dropdownColor: AppTheme.more_bg,
+                                      value: _chosenValue,
+                                      onChanged: (String? newValue) {
+                                        ss(
+                                          () {
+                                            _chosenValue = newValue;
+                                          },
+                                        );
+                                      },
+                                      items: <String>["Mahabharata"]
+                                          .map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(
+                                            value,
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                      hint: Text(
+                                        "Select",
+                                        style: TextStyle(
+                                          color: AppTheme.AppBarTheme,
+                                        ),
+                                      ),
                                     );
-                                  }).toList(),
+                                  },
                                 ),
                               ),
                             ),
                             Container(
                               margin: EdgeInsets.only(left: 20),
                               child: Text(
-                                  dropdownValue +
-                                      ' Course Fee  -  ₹' +
-                                      FeeValue,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: AppTheme.AppBarTheme)),
+                                dropdownValue + ' Course Fee  -  ₹' + FeeValue,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: AppTheme.AppBarTheme,
+                                ),
+                              ),
                             ),
                             InkWell(
                               onTap: () {
-                                if (formKey.currentState!.validate()) {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => InstaMojoDemo(
-                                                fees: FeeValue,
-                                                name: name.text,
-                                                email: email.text,
-                                                phone: phone.text,
-                                                address: address.text,
-                                                age: age.text,
-                                                course: dropdownValue)));
-                                }
+                                // if (formKey.currentState!.validate()) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AdmissionPayment(
+                                      fees: FeeValue,
+                                      name: name.text,
+                                      email: email.text,
+                                      phone: phone.text,
+                                      address: address.text,
+                                      age: age.text,
+                                      course: "Mahabharata",
+                                    ),
+                                  ),
+                                );
                               },
                               child: Container(
                                 margin: EdgeInsets.all(30),
