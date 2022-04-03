@@ -10,7 +10,7 @@ import 'dart:async';
 
 class Payment_booking extends StatefulWidget {
   final fees;
-  
+
   final name;
   final email;
   final phone;
@@ -19,7 +19,17 @@ class Payment_booking extends StatefulWidget {
   final fromtime;
   final totime;
 
-  const Payment_booking({Key? key, this.fees,this.address,this.date,this.fromtime,this.totime,this.email,this.name,this.phone}) : super(key: key);
+  const Payment_booking(
+      {Key? key,
+      this.fees,
+      this.address,
+      this.date,
+      this.fromtime,
+      this.totime,
+      this.email,
+      this.name,
+      this.phone})
+      : super(key: key);
 
   @override
   _Payment_bookingState createState() => _Payment_bookingState();
@@ -31,6 +41,8 @@ class _Payment_bookingState extends State<Payment_booking> {
   double progress = 0;
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
+  String? paymentRequestID;
+  bool successStatus = false;
   @override
   String? selectedUrl;
   void initState() {
@@ -46,9 +58,9 @@ class _Payment_bookingState extends State<Payment_booking> {
     Map<String, String> body = {
       "amount": widget.fees, //amount to be paid
       "purpose": "Booking",
-      "buyer_name": widget.name ??'dummy',
-      "email": widget.email ??'dummy@gmail.com',
-      "phone": widget.phone ??'7878787878',
+      "buyer_name": widget.name ?? 'dummy',
+      "email": widget.email ?? 'dummy@gmail.com',
+      "phone": widget.phone ?? '7878787878',
       "allow_repeated_payments": "true",
       "send_email": "true",
       "send_sms": "true",
@@ -68,18 +80,20 @@ class _Payment_bookingState extends State<Payment_booking> {
         },
         body: body);
     if (json.decode(resp.body)['success'] == true) {
-//If request is successful take the longurl.
+      //If request is successful take the longurl.
+      print("===========================================");
+      print(json.decode(resp.body));
       setState(() {
         isLoading = false; //setting state to false after data loaded
-
+        paymentRequestID = json.decode(resp.body)["payment_request"]['id'];
         selectedUrl =
-            json.decode(resp.body)["payment_request"]['longurl'].toString() +
-                "?embed=form";
+            json.decode(resp.body)["payment_request"]['longurl'].toString();
+        print("SElected URL");
         print(selectedUrl);
       });
       // print(json.decode(resp.body)['message'].toString());
-//If something is wrong with the data we provided to
-//create the Payment_Request. For Example, the email is in incorrect format, the payment_Request creation will fail.
+      //If something is wrong with the data we provided to
+      //create the Payment_Request. For Example, the email is in incorrect format, the payment_Request creation will fail.
     }
   }
 
@@ -116,13 +130,14 @@ class _Payment_bookingState extends State<Payment_booking> {
                     print(uri);
                     // uri containts newly loaded url
                     if (mounted) {
-                      if (url.contains('https://www.google.com/')) {
+                      if (url.contains(
+                          'https://test.instamojo.com/order/status')) {
                         //Take the payment_id parameter of the url.
                         String? paymentRequestId =
                             uri?.queryParameters['payment_id'];
                         print("value is: " + paymentRequestId.toString());
                         //calling this method to check payment status
-                        _checkPaymentStatus(paymentRequestId.toString());
+                        _checkPaymentStatus(paymentRequestID!);
                       }
                     }
                   },
@@ -134,35 +149,35 @@ class _Payment_bookingState extends State<Payment_booking> {
 
   _checkPaymentStatus(String id) async {
     var response = await http.get(
-        Uri.parse("https://test.instamojo.com/api/1.1/payments/$id/"),
+        Uri.parse("https://test.instamojo.com/api/1.1/payment-requests/$id/"),
         headers: {
           "Accept": "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
           "X-Api-Key": "test_471c4569e7c0bbec66bacecaea1",
           "X-Auth-Token": "test_dbd4f9391fd3909c0736a61506d"
         });
     var realResponse = json.decode(response.body);
-    print(realResponse);
+    print("********************%%%%%%%%%%%%%%");
+    print("response is: " + realResponse.toString());
     if (realResponse['success'] == true) {
-      if (realResponse["payment"]['status'] == 'Credit') {
-        print('sucesssssssssssful');
-        var uuid = Uuid();
-        var rand=uuid.v1();
+      print('sucesssssssssssful');
+      if (realResponse["payment_request"]['payments'][0]['status'] ==
+          "Credit") {
         FirebaseFirestore.instance
-              .collection("Booking")
-    .doc(rand)
-        .set({
-    "Name": widget.name,
-    "Phone": widget.phone,       
-     "email":widget.email,
-    "date":widget.date,
-    "Address": widget.address,
-    "time":widget.fromtime+"-"+widget.totime,
-    "fees":widget.fees,
-    }).then((value) => print("Booking Document Added"))
-        .catchError((error) => print(
-    "Failed to add user: $error"));
-    
+            .collection("Booking")
+            .add({
+              "Name": widget.name,
+              "Phone": widget.phone,
+              "email": widget.email,
+              "date": widget.date,
+              "payment": realResponse,
+              "Address": widget.address,
+              "time": widget.fromtime + "-" + widget.totime,
+              "fees": widget.fees,
+            })
+            .then((value) => print("Booking Document Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+
 //payment is successful.
       } else {
         print('failed');

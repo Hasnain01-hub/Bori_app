@@ -356,6 +356,7 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                 data: Theme.of(context)
                                     .copyWith(splashColor: Colors.transparent),
                                 child: TextField(
+                                  controller: address,
                                   autofocus: false,
                                   style: TextStyle(
                                       fontSize: 14.0,
@@ -507,7 +508,6 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                             InkWell(
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
-                                  setState(() {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -519,7 +519,6 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                                 address: address.text,
                                                 age: age.text,
                                                 course: dropdownValue)));
-                                  });
                                 }
                               },
                               child: Container(

@@ -5,7 +5,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:convert';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
@@ -38,11 +37,27 @@ bool isLoading = true; //this can be declared outside the class
 
 class _InstaMojoDemoState extends State<InstaMojoDemo> {
   double progress = 0;
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
   @override
   String? selectedUrl;
   String? url;
+  String? paymentRequestID;
+  bool successStatus = false;
+
+  final GlobalKey webViewKey = GlobalKey();
+
+  InAppWebViewController? webViewController;
+  InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
+      crossPlatform: InAppWebViewOptions(
+        useShouldOverrideUrlLoading: true,
+        mediaPlaybackRequiresUserGesture: false,
+      ),
+      android: AndroidInAppWebViewOptions(
+        useHybridComposition: true,
+      ),
+      ios: IOSInAppWebViewOptions(
+        allowsInlineMediaPlayback: true,
+      ));
+
   void initState() {
     createRequest();
 
@@ -55,7 +70,7 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
   Future createRequest() async {
     Map<String, String> body = {
       "amount": widget.fees, //amount to be paid
-      "purpose": "Addmission",
+      "purpose": "Admission",
       "buyer_name": widget.name ?? 'dummy',
       "email": widget.email ?? 'dummy@gmail.com',
       "phone": widget.phone ?? '8665643435',
@@ -66,8 +81,8 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
       //Where to redirect after a successful payment.
       // "webhook": "https://www.google.com/",
     };
-//First we have to create a Payment_Request.
-//then we'll take the response of our request.
+    //First we have to create a Payment_Request.
+    //then we'll take the response of our request.
     var resp = await http.post(
         Uri.parse("https://test.instamojo.com/api/1.1/payment-requests/"),
         headers: {
@@ -78,19 +93,20 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
         },
         body: body);
     if (json.decode(resp.body)['success'] == true) {
-//If request is successful take the longurl.
+      //If request is successful take the longurl.
+      print("===========================================");
+      print(json.decode(resp.body));
       setState(() {
         isLoading = false; //setting state to false after data loaded
-
+        paymentRequestID = json.decode(resp.body)["payment_request"]['id'];
         selectedUrl =
-            json.decode(resp.body)["payment_request"]['longurl'].toString() +
-                "?embed=form";
+            json.decode(resp.body)["payment_request"]['longurl'].toString();
         print("SElected URL");
         print(selectedUrl);
       });
       // print(json.decode(resp.body)['message'].toString());
-//If something is wrong with the data we provided to
-//create the Payment_Request. For Example, the email is in incorrect format, the payment_Request creation will fail.
+      //If something is wrong with the data we provided to
+      //create the Payment_Request. For Example, the email is in incorrect format, the payment_Request creation will fail.
     }
   }
 
@@ -107,6 +123,8 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
               ? //check loadind status
               CircularProgressIndicator()
               : InAppWebView(
+                  key: webViewKey,
+                  initialOptions: options,
                   initialUrlRequest: URLRequest(
                     url: Uri.tryParse(selectedUrl!),
                   ),
@@ -124,17 +142,16 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
                   },
                   onUpdateVisitedHistory: (_, Uri? uri, __) {
                     String url = uri.toString();
-                    print("ANder wakai"+url);
+                    print("ANder wakai" + url);
                     print(uri);
                     // uri containts newly loaded url
                     if (mounted) {
-                      if (url.contains('https://test.instamojo.com/')) {
-//Take the payment_id parameter of the url.
-                        String? paymentRequestId =
-                            uri?.queryParameters['payment_request_id'];
+                      if (url.contains('https://test.instamojo.com/order/status')) {
+                        //Take the payment_id parameter of the url.
+                        String? paymentRequestId = uri?.pathSegments[2];
                         print("value is: " + paymentRequestId.toString());
                         //calling this method to check payment status
-                        _checkPaymentStatus(paymentRequestId.toString());
+                        _checkPaymentStatus(paymentRequestID!);
                       }
                     }
                   },
@@ -146,27 +163,22 @@ class _InstaMojoDemoState extends State<InstaMojoDemo> {
 
   _checkPaymentStatus(String id) async {
     var response = await http.get(
-        Uri.parse("https://test.instamojo.com/api/1.1/payments/$id/"),
+        Uri.parse("https://test.instamojo.com/api/1.1/payment-requests/$id/"),
         headers: {
           "Accept": "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
           "X-Api-Key": "test_471c4569e7c0bbec66bacecaea1",
           "X-Auth-Token": "test_dbd4f9391fd3909c0736a61506d"
         });
     var realResponse = json.decode(response.body);
     print("********************%%%%%%%%%%%%%%");
     print("response is: " + realResponse.toString());
-    print(realResponse);
-    print(realResponse['success']);
     if (realResponse['success'] == true) {
       print('sucesssssssssssful');
-      if (realResponse["payment"]['status'] == 'Credit') {
-        var uuid = Uuid();
-        var rand = uuid.v1();
+      if (realResponse["payment_request"]['payments'][0]['status'] == "Credit") {
         FirebaseFirestore.instance
             .collection("Admission")
-            .doc(rand)
-            .set({
+            .add({
               "Name": widget.name,
               "Phone": widget.phone,
               "email": widget.email,
