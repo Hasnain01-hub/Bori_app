@@ -266,7 +266,17 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                 child: Theme(
                                   data: Theme.of(context).copyWith(
                                       splashColor: Colors.transparent),
-                                  child: TextField(
+                                  child: TextFormField(
+                                    keyboardType: TextInputType.number,
+  //                                   inputFormatters: <TextInputFormatter>[
+  //     FilteringTextInputFormatter.allow(RegExp(r'^[0-9]|3[01]$')),
+  // ], 
+                                    validator: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'Date is Required';
+                                      }
+                                      return null;
+                                    },
                                     controller: date,
                                     autofocus: false,
                                     style: TextStyle(
@@ -304,7 +314,17 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                 child: Theme(
                                   data: Theme.of(context).copyWith(
                                       splashColor: Colors.transparent),
-                                  child: TextField(
+                                  child: TextFormField(
+                                    keyboardType: TextInputType.number,
+  //                                   inputFormatters: <TextInputFormatter>[
+  //     FilteringTextInputFormatter.allow(RegExp(r'^[1-9][1-2]?$')),
+  // ], 
+                                    validator: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'Month is Required';
+                                      }
+                                      return null;
+                                    },
                                     controller: month,
                                     //  textAlign: TextAlign.left,
                                     autofocus: false,
@@ -342,7 +362,18 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                 child: Theme(
                                   data: Theme.of(context).copyWith(
                                       splashColor: Colors.transparent),
-                                  child: TextField(
+                                  child: TextFormField(
+                                    
+                                    keyboardType: TextInputType.number,
+  //                                   inputFormatters: <TextInputFormatter>[
+  //     FilteringTextInputFormatter.allow(RegExp(r'^([0-9]{4})-(1[0-2])')),
+  // ], 
+                                    validator: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'Year is Required';
+                                      }
+                                      return null;
+                                    },
                                     controller: year,
                                     autofocus: false,
                                     style: TextStyle(
@@ -392,7 +423,17 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                   child: Theme(
                                     data: Theme.of(context).copyWith(
                                         splashColor: Colors.transparent),
-                                    child: TextField(
+                                    child: TextFormField(
+                                  keyboardType: TextInputType.number,
+                                    inputFormatters: <TextInputFormatter>[
+      FilteringTextInputFormatter.allow(RegExp(r'^(2[0-3]|[01]?[0-9])')),
+  ], 
+                                    validator: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'Hours is Required';
+                                      }
+                                      return null;
+                                    },
                                       controller: frmhrs,
                                       autofocus: false,
                                       style: TextStyle(
@@ -429,7 +470,17 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                   child: Theme(
                                     data: Theme.of(context).copyWith(
                                         splashColor: Colors.transparent),
-                                    child: TextField(
+                                    child: TextFormField(
+                                      keyboardType: TextInputType.number,
+  //                                   inputFormatters: <TextInputFormatter>[
+  //     FilteringTextInputFormatter.allow(RegExp(r'^[0-5][0-9]?$')),
+  // ], 
+                                    validator: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'Minutes is Required';
+                                      }
+                                      return null;
+                                    },
                                       controller: frmmin,
                                       autofocus: false,
                                       style: TextStyle(
@@ -481,7 +532,17 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                       child: Theme(
                                         data: Theme.of(context).copyWith(
                                             splashColor: Colors.transparent),
-                                        child: TextField(
+                                        child: TextFormField(
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: <TextInputFormatter>[
+      FilteringTextInputFormatter.allow(RegExp(r'^(2[0-3]|[01]?[0-9])')),
+  ],
+                                          validator: (String? value) {
+                                            if (value!.isEmpty) {
+                                              return 'Hours is Required';
+                                            }
+                                            return null;
+                                          },
                                           controller: tohrs,
                                           autofocus: false,
                                           style: TextStyle(
@@ -524,7 +585,17 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                       child: Theme(
                                         data: Theme.of(context).copyWith(
                                             splashColor: Colors.transparent),
-                                        child: TextField(
+                                        child: TextFormField(
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: <TextInputFormatter>[
+      FilteringTextInputFormatter.allow(RegExp(r'^[0-5][0-9]?$')),
+  ],
+                                          validator: (String? value) {
+                                            if (value!.isEmpty) {
+                                              return 'Minutes is Required';
+                                            }
+                                            return null;
+                                          },
                                           controller: tomin,
                                           autofocus: false,
                                           style: TextStyle(
@@ -719,14 +790,14 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                 if (formKey.currentState!.validate()) {
                                   setState(() {
                                     var fullDate =
-                                        '${date.text} +"-"+${month.text}+"-"+${year.text}';
+                                        '${date.text}:${month.text}:${year.text}';
                                     print(fullDate);
                                     print(name.text);
                                     var fromtime =
-                                        '${frmhrs.text} + ":" + ${frmmin.text}';
+                                        '${frmhrs.text}:${frmmin.text}';
                                     print(fromtime);
                                     var totime =
-                                        '${tohrs.text} + ":" + ${tomin.text}';
+                                        '${tohrs.text}:${tomin.text}';
                                     print(totime);
 
                                     Navigator.push(

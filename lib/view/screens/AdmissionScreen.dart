@@ -502,6 +502,7 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                           },
                                         );
                                       },
+                                      //Mahabharata
                                       items: <String>["Mahabharata"]
                                           .map<DropdownMenuItem<String>>(
                                               (String value) {
@@ -538,7 +539,7 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                // if (formKey.currentState!.validate()) {
+                                if (formKey.currentState!.validate()) {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -553,6 +554,7 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     ),
                                   ),
                                 );
+                              }
                               },
                               child: Container(
                                 margin: EdgeInsets.all(30),
