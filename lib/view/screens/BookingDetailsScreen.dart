@@ -472,9 +472,9 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                         splashColor: Colors.transparent),
                                     child: TextFormField(
                                       keyboardType: TextInputType.number,
-  //                                   inputFormatters: <TextInputFormatter>[
-  //     FilteringTextInputFormatter.allow(RegExp(r'^[0-5][0-9]?$')),
-  // ], 
+                                    inputFormatters: <TextInputFormatter>[
+       FilteringTextInputFormatter.allow(RegExp(r'^[0-5][0-9]?$')),
+   ], 
                                     validator: (String? value) {
                                       if (value!.isEmpty) {
                                         return 'Minutes is Required';
