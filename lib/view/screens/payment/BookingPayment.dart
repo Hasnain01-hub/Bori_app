@@ -17,6 +17,7 @@ class BookingPayment extends StatefulWidget {
   final date;
   final fromtime;
   final totime;
+  final bookingType;
 
   const BookingPayment(
       {Key? key,
@@ -27,7 +28,8 @@ class BookingPayment extends StatefulWidget {
       this.totime,
       this.email,
       this.name,
-      this.phone})
+      this.phone,
+      this.bookingType})
       : super(key: key);
 
   @override
@@ -78,6 +80,8 @@ class _BookingPaymentState extends State<BookingPayment> {
           "X-Auth-Token": "test_dbd4f9391fd3909c0736a61506d"
         },
         body: body);
+
+    print("Response : ${resp.body} ${resp.statusCode}");
     if (json.decode(resp.body)['success'] == true) {
       //If request is successful take the longurl.
       print("===========================================");
@@ -93,6 +97,9 @@ class _BookingPaymentState extends State<BookingPayment> {
       // print(json.decode(resp.body)['message'].toString());
       //If something is wrong with the data we provided to
       //create the Payment_Request. For Example, the email is in incorrect format, the payment_Request creation will fail.
+    }
+    else{
+      print("Call unsuccessful");
     }
   }
 
@@ -174,6 +181,7 @@ class _BookingPaymentState extends State<BookingPayment> {
               "Address": widget.address,
               "time": widget.fromtime + "-" + widget.totime,
               "fees": widget.fees,
+              "bookingType": widget.bookingType
             })
             .then((value) => print("Booking Document Added"))
             .catchError((error) => print("Failed to add user: $error"));

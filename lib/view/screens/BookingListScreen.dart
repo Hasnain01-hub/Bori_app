@@ -22,12 +22,14 @@ List<String> images = [
   "assets/images/booking.png",
   "assets/images/booking.png",
   "assets/images/booking.png",
+  "assets/images/booking.png",
 ];
 List<String> title = [
   "Conference Room",
   "Auditorium",
   "Amphithiter",
   "Studio",
+  "Tata Hall"
 ];
 Widget appBarTitle = new Text("Booking",
     style: TextStyle(
@@ -224,7 +226,7 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      BookingDetailsScreen()));
+                                                      BookingDetailsScreen(title: title[index],)));
                                         },
                                         child: Stack(
                                           //alignment:new Alignment(x, y)
@@ -315,7 +317,7 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              BookingDetailsScreen(),
+                                              BookingDetailsScreen(title: title[index],),
                                         ),
                                       );
                                     },

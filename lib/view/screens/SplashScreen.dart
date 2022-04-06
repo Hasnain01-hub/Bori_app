@@ -97,7 +97,7 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 200),
+                        padding: EdgeInsets.only(top: 150),
                         child: Center(
                           child: FadeTransition(
                             opacity: _fadeAnimation!,

@@ -19,7 +19,7 @@ class _BottomBarState extends State<MainActivityBookingDetails> {
   late PageController _pageController;
 
   List<Widget> tabPages = [
-    BookingDetailsScreen(),
+    BookingDetailsScreen(title: 'Booking',),
     MiddleScreen(),
     AboutScreen()
   ];
