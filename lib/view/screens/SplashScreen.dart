@@ -102,7 +102,7 @@ class _SplashState extends State<SplashScreen> with TickerProviderStateMixin {
                           child: FadeTransition(
                             opacity: _fadeAnimation!,
                             child: Text(
-                              "The Bhandarkar Oriental \n \t\t\t\tResearch Centre",
+                              "The Bhandarkar Oriental\nResearch Institute",
                               textAlign:TextAlign.center,
                               style: TextStyle(
                                 fontSize: 22.0,

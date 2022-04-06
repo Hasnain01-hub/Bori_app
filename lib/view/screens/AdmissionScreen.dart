@@ -320,6 +320,9 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                     if (value!.isEmpty) {
                                       return 'Phone is Required';
                                     }
+                                    else if(value.length != 10){
+                                      return 'Invalid Phone Number';
+                                    }
                                     return null;
                                   },
                                   controller: phone,
@@ -370,7 +373,12 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                               child: Theme(
                                 data: Theme.of(context)
                                     .copyWith(splashColor: Colors.transparent),
-                                child: TextField(
+                                child: TextFormField(
+                                  validator: (String? value) {
+                                    if (value!.isEmpty) {
+                                      return "Please enter Address!";
+                                    }
+                                  },
                                   controller: address,
                                   autofocus: false,
                                   style: TextStyle(
@@ -416,7 +424,17 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                               child: Theme(
                                 data: Theme.of(context)
                                     .copyWith(splashColor: Colors.transparent),
-                                child: TextField(
+                                child: TextFormField(
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9])$')),
+                                  ],
+                                  validator: (String? value) {
+                                    if (value!.isEmpty) {
+                                      return "Please enter Age!";
+                                    }
+                                    return null;
+                                  },
                                   keyboardType: TextInputType.number,
                                   controller: age,
                                   autofocus: false,
@@ -502,6 +520,7 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                                           },
                                         );
                                       },
+                                      //Mahabharata
                                       items: <String>["Mahabharata"]
                                           .map<DropdownMenuItem<String>>(
                                               (String value) {
@@ -538,21 +557,22 @@ class _AdmissionScreenState extends State<AdmissionScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                // if (formKey.currentState!.validate()) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => AdmissionPayment(
-                                      fees: FeeValue,
-                                      name: name.text,
-                                      email: email.text,
-                                      phone: phone.text,
-                                      address: address.text,
-                                      age: age.text,
-                                      course: "Mahabharata",
+                                if (formKey.currentState!.validate()) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AdmissionPayment(
+                                        fees: FeeValue,
+                                        name: name.text,
+                                        email: email.text,
+                                        phone: phone.text,
+                                        address: address.text,
+                                        age: age.text,
+                                        course: "Mahabharata",
+                                      ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                }
                               },
                               child: Container(
                                 margin: EdgeInsets.all(30),

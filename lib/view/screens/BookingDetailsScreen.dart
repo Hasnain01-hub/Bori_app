@@ -120,7 +120,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
             Flexible(
               child: Container(
                 //   padding: const EdgeInsets.only(bottom: 10),
-                padding: const EdgeInsets.all(10),
+                // padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.only(top: 10),
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
@@ -211,6 +211,18 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                   data: Theme.of(context).copyWith(
                                       splashColor: Colors.transparent),
                                   child: TextFormField(
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp(r'^(3[0-1]|[012]?[0-9])')),
+                                    ],
+                                    validator: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'Date';
+                                      } else if (value.length > 2) {
+                                        return "Invalid";
+                                      }
+                                      return null;
+                                    },
                                     controller: date,
                                     keyboardType: TextInputType.datetime,
                                     autofocus: false,
@@ -250,6 +262,22 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                   data: Theme.of(context).copyWith(
                                       splashColor: Colors.transparent),
                                   child: TextFormField(
+                                    // inputFormatters: <TextInputFormatter>[
+                                    //   FilteringTextInputFormatter.allow(
+                                    //       RegExp(r'^[1-9][1-2]?$')),
+                                    // ],
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp(r'^(0?[1-9]|1[012])$')),
+                                    ],
+                                    validator: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'Month';
+                                      } else if (value.length > 2) {
+                                        return "Invalid";
+                                      }
+                                      return null;
+                                    },
                                     controller: month,
                                     keyboardType: TextInputType.datetime,
                                     //  textAlign: TextAlign.left,
@@ -289,6 +317,18 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                   data: Theme.of(context).copyWith(
                                       splashColor: Colors.transparent),
                                   child: TextFormField(
+                                    inputFormatters: <TextInputFormatter>[
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp(r'^([1-9][0-9]*)')),
+                                    ],
+                                    validator: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return 'Year';
+                                      } else if (value.length > 4) {
+                                        return "Invalid";
+                                      }
+                                      return null;
+                                    },
                                     controller: year,
                                     keyboardType: TextInputType.datetime,
                                     autofocus: false,
@@ -343,6 +383,16 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                     .copyWith(splashColor: Colors.transparent),
                                 child: TextFormField(
                                   controller: frmhrs,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'^(2[0-3]|[01]?[0-9])')),
+                                  ],
+                                  validator: (String? value) {
+                                    if (value!.isEmpty) {
+                                      return 'Hrs';
+                                    }
+                                    return null;
+                                  },
                                   keyboardType: TextInputType.datetime,
                                   autofocus: false,
                                   style: TextStyle(
@@ -381,6 +431,16 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                     .copyWith(splashColor: Colors.transparent),
                                 child: TextFormField(
                                   controller: frmmin,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'^([0-5][0-9]|[01]?[0-9])')),
+                                  ],
+                                  validator: (String? value) {
+                                    if (value!.isEmpty) {
+                                      return 'Mins';
+                                    }
+                                    return null;
+                                  },
                                   keyboardType: TextInputType.datetime,
                                   autofocus: false,
                                   style: TextStyle(
@@ -430,8 +490,18 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                     data: Theme.of(context).copyWith(
                                         splashColor: Colors.transparent),
                                     child: TextFormField(
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(
+                                            RegExp(r'^(2[0-3]|[01]?[0-9])')),
+                                      ],
+                                      validator: (String? value) {
+                                        if (value!.isEmpty) {
+                                          return 'Hrs!';
+                                        }
+                                        return null;
+                                      },
                                       controller: tohrs,
-                                      keyboardType: TextInputType.datetime,
                                       autofocus: false,
                                       style: TextStyle(
                                           fontSize: 14.0,
@@ -468,8 +538,19 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                     data: Theme.of(context).copyWith(
                                         splashColor: Colors.transparent),
                                     child: TextFormField(
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(
+                                            RegExp(
+                                                r'^([0-5][0-9]|[01]?[0-9])')),
+                                      ],
+                                      validator: (String? value) {
+                                        if (value!.isEmpty) {
+                                          return 'Mins!';
+                                        }
+                                        return null;
+                                      },
                                       controller: tomin,
-                                      keyboardType: TextInputType.datetime,
                                       autofocus: false,
                                       style: TextStyle(
                                         fontSize: 14.0,
@@ -521,6 +602,12 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                                 .copyWith(splashColor: Colors.transparent),
                             child: TextFormField(
                               controller: address,
+                              validator: (String? value) {
+                                if (value!.isEmpty) {
+                                  return 'Address is required!';
+                                }
+                                return null;
+                              },
                               minLines: 6,
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
@@ -571,6 +658,8 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                               validator: (String? value) {
                                 if (value!.isEmpty) {
                                   return 'Phone is Required';
+                                }else if(value.length != 10){
+                                  return 'Invalid Phone Number';
                                 }
                                 return null;
                               },
